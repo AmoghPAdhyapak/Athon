@@ -1,0 +1,696 @@
+CREATORCORE — FINAL MASTER SYSTEM PROMPT
+
+IMPORTANT:
+Transform CreatorCore from a simple AI thumbnail prototype into a FULL PROFESSIONAL PUBLIC CREATOR PLATFORM.
+
+CreatorCore should NO LONGER feel like:
+
+* a prototype
+* a Replit project
+* a developer demo
+* a simple AI website
+* a basic image generator
+
+CreatorCore MUST feel like:
+
+* a real public creator ecosystem
+* a cinematic AI creator studio
+* a premium startup product
+* a thumbnail engineering platform
+* a large-scale creator marketplace
+* a professional cross-platform creator application
+
+==================================================
+CORE PRODUCT VISION
+===================
+
+CreatorCore should emotionally feel like:
+“This is where creators build viral content.”
+
+The platform should support:
+
+* gaming creators
+* anime editors
+* YouTubers
+* TikTok creators
+* reel editors
+* esports creators
+* cinematic editors
+* social media creators
+
+The app should feel similar to:
+
+* Canva
+* Figma
+* Midjourney
+* CapCut
+* Pinterest
+* Adobe Creative Cloud
+
+BUT specialized for:
+
+* gaming thumbnails
+* cinematic creator workflows
+* AI-powered creator intelligence
+
+==================================================
+DESKTOP-FIRST DEVELOPMENT PRIORITY
+==================================
+
+IMPORTANT:
+Focus on DESKTOP experience first.
+
+Do NOT heavily optimize mobile yet.
+
+The desktop app should feel like:
+
+* professional creative software
+* cinematic creator studio
+* premium AI workspace
+
+Prioritize:
+
+* widescreen layouts
+* sidebar navigation
+* desktop workspace panels
+* cinematic transitions
+* template ecosystem
+* authentication
+* stable AI generation pipeline
+* creator dashboard experience
+
+==================================================
+CROSS PLATFORM REQUIREMENTS
+===========================
+
+The app must eventually work professionally on:
+
+* Windows
+* Mac
+* Android
+* iPhone
+* Web browsers
+
+Use:
+
+* responsive layouts
+* installable PWA behavior
+* app-style navigation
+* smooth fullscreen experience
+* offline shell support
+
+The app should feel like:
+a REAL APPLICATION.
+
+NOT:
+a normal website.
+
+==================================================
+CINEMATIC SHELL / APP EXPERIENCE
+================================
+
+The app must feel:
+
+* immersive
+* futuristic
+* cinematic
+* creator-focused
+* premium
+* smooth
+* modern
+
+Use:
+
+* cinematic splash screen
+* animated CreatorCore logo
+* smooth loading animations
+* glassmorphism
+* soft glow effects
+* premium gradients
+* esports-inspired aesthetic
+* cinematic background motion
+* smooth transitions
+* hover animations
+* layered UI depth
+
+Avoid:
+
+* flat dashboards
+* boring admin panels
+* static developer UI
+
+==================================================
+HOME EXPERIENCE
+===============
+
+The home screen must instantly impress users.
+
+Show:
+
+* trending templates
+* viral thumbnails
+* cinematic showcases
+* featured creators
+* recommended styles
+* AI suggestions
+* recent projects
+* trending categories
+
+Users should instantly feel:
+“This platform is alive.”
+
+==================================================
+FULL ACCOUNT SYSTEM
+===================
+
+This is a PUBLIC APP.
+
+Authentication and account safety are VERY important.
+
+Support:
+
+* Google Login
+* Email Login
+* Password Reset
+* Remember Me
+* Session Persistence
+* Secure Authentication
+* Persistent Login Sessions
+* Logout Everywhere
+
+==================================================
+ACCOUNT SAFETY FEATURES
+=======================
+
+Implement:
+
+* account settings
+* privacy controls
+* email verification
+* password change
+* profile editing
+* connected device tracking
+* account recovery
+* secure session management
+
+The app should feel:
+
+* trustworthy
+* secure
+* professional
+
+==================================================
+PROFILE SYSTEM
+==============
+
+Every user should have:
+
+* username
+* avatar
+* creator bio
+* public gallery
+* saved projects
+* favorite templates
+* public/private creations
+* creator statistics
+
+==================================================
+PUBLIC / PRIVATE SYSTEM
+=======================
+
+Users must be able to:
+
+* publish creations publicly
+* keep creations private
+* share templates
+* share thumbnails
+* remix templates
+* clone templates
+
+==================================================
+COMMUNITY CREATOR PLATFORM
+==========================
+
+Add:
+
+* creator feed
+* trending creators
+* public galleries
+* likes
+* bookmarks
+* template remixing
+* creator discovery
+* featured creators
+* community inspiration
+
+The platform should feel:
+
+* active
+* social
+* creator-driven
+
+==================================================
+10,000+ TEMPLATE ECOSYSTEM
+==========================
+
+Create a massive scalable template ecosystem.
+
+Target:
+10,000+ templates minimum.
+
+Templates must NOT feel repetitive.
+
+Templates should be categorized intelligently.
+
+==================================================
+TEMPLATE CATEGORIES
+===================
+
+Gaming:
+
+* Free Fire
+* PUBG
+* BGMI
+* Valorant
+* Fortnite
+* COD
+* Minecraft
+* GTA
+* Apex Legends
+* esports
+
+Anime:
+
+* dark anime
+* cinematic anime
+* rage edits
+* glow edits
+* emotional edits
+
+Social Media:
+
+* YouTube thumbnails
+* Shorts covers
+* TikTok hooks
+* Instagram posts
+* reels covers
+
+Style Categories:
+
+* cinematic
+* fire
+* neon
+* esports
+* hyper-realistic
+* dark mode
+* anime aura
+* futuristic
+* glitch
+* action movie
+
+Emotion Categories:
+
+* rage
+* revenge
+* victory
+* chaos
+* survival
+* fear
+* dominance
+* impossible moment
+* emotional
+* heroic
+
+==================================================
+SMART TEMPLATE SYSTEM
+=====================
+
+Templates must NOT be static images only.
+
+Each template should contain:
+
+* layout structure
+* composition rules
+* camera framing
+* lighting style
+* text positioning
+* cinematic mood
+* CTR strategy
+* emotional style
+* color grading
+
+Templates should behave like:
+“AI-assisted cinematic frameworks.”
+
+==================================================
+TEMPLATE DISCOVERY SYSTEM
+=========================
+
+Users should be able to:
+
+* browse templates
+* search templates
+* filter templates
+* save favorites
+* remix templates
+* clone templates
+* customize templates
+
+==================================================
+TRENDING SYSTEM
+===============
+
+Add:
+
+* trending templates
+* viral templates
+* highest CTR templates
+* most used templates
+* editor picks
+* community favorites
+
+==================================================
+AI TEMPLATE GENERATION
+======================
+
+The AI should dynamically generate NEW templates.
+
+The system should:
+
+* analyze trending thumbnail styles
+* generate new cinematic layouts
+* generate new composition styles
+* evolve thumbnail trends automatically
+
+==================================================
+PROJECT WORKSPACE
+=================
+
+Users should be able to:
+
+* save projects
+* restore sessions
+* compare versions
+* duplicate projects
+* organize folders
+* reopen generations
+* regenerate thumbnails
+* edit prompts later
+
+==================================================
+SESSION PERSISTENCE FIX
+=======================
+
+IMPORTANT:
+The app must NOT reset when:
+
+* minimized
+* backgrounded
+* refreshed
+* tab-switched
+
+Preserve:
+
+* uploaded image
+* generation progress
+* prompts
+* selected settings
+* AI state
+
+Use:
+
+* localStorage
+* IndexedDB
+* session recovery
+* persistent generation tracking
+
+==================================================
+THUMBNAIL GENERATION SYSTEM
+===========================
+
+CreatorCore should generate:
+
+* AI thumbnails
+* cinematic creator assets
+* hooks
+* captions
+* titles
+* hashtags
+* layout ideas
+* CTR-optimized designs
+
+The system must specialize in:
+
+* cinematic gaming thumbnails
+* esports thumbnails
+* viral creator packaging
+* YouTube CTR optimization
+
+==================================================
+CTR THUMBNAIL RULES
+===================
+
+The thumbnail must:
+
+* instantly grab attention
+* create curiosity
+* feel dangerous
+* feel emotional
+* feel high-stakes
+* communicate action instantly
+
+The thumbnail should make viewers think:
+“WHAT HAPPENED HERE?”
+
+==================================================
+IMAGE PRESERVATION RULES
+========================
+
+The uploaded image is the PRIMARY visual reference.
+
+PRESERVE:
+
+* character appearance
+* face structure
+* pose direction
+* cinematic composition
+* atmosphere
+* jungle environment
+* fire effects
+* emotional tone
+
+DO NOT:
+
+* redesign the character completely
+* generate random unrelated compositions
+* destroy original visual identity
+
+The result should feel like:
+“a professionally enhanced evolution of the uploaded image.”
+
+==================================================
+ASPECT RATIO ENGINE
+===================
+
+IMPORTANT:
+Aspect ratio must be controlled at:
+
+* backend generation pipeline
+* canvas generation
+* image preprocessing
+* output dimensions
+
+NOT only prompt wording.
+
+==================================================
+PLATFORM DIMENSIONS
+===================
+
+YouTube:
+1920x1080 (16:9)
+
+YouTube Shorts:
+1080x1920 (9:16)
+
+TikTok:
+1080x1920 (9:16)
+
+Instagram Post:
+1080x1080 (1:1)
+
+Instagram Story:
+1080x1920 (9:16)
+
+Facebook:
+1080x1080 (1:1)
+
+X/Twitter:
+1600x900 (16:9)
+
+==================================================
+SMART RECOMPOSITION SYSTEM
+==========================
+
+If uploaded image is portrait and target is widescreen:
+
+* expand environment sideways
+* preserve subject dominance
+* maintain cinematic framing
+* preserve face visibility
+* preserve weapon visibility
+
+If uploaded image is widescreen and target is vertical:
+
+* prioritize character height
+* stack storytelling vertically
+* maintain mobile readability
+
+DO NOT:
+
+* stretch images
+* badly crop faces
+* preserve wrong dimensions
+
+==================================================
+FACIAL EMOTION FIX
+==================
+
+The goal is NOT:
+
+* anime screaming
+* exaggerated rage
+* unrealistic emotion
+* cartoon villain expressions
+
+The goal IS:
+
+* realistic combat focus
+* controlled dominance
+* subtle survival pressure
+* calm dangerous confidence
+* believable cinematic intensity
+
+The character should feel:
+
+* experienced
+* focused
+* dangerous
+
+NOT:
+
+* overacted
+* exaggerated
+* unrealistic
+
+==================================================
+ACTION & MOTION RULES
+=====================
+
+The thumbnail must feel:
+
+* active
+* explosive
+* dangerous
+* cinematic
+
+Add:
+
+* dynamic combat posture
+* movement tension
+* motion blur
+* sparks
+* smoke
+* fire particles
+* battlefield destruction
+* diagonal energy flow
+
+Avoid:
+
+* static standing poses
+* frozen scenes
+* fashion-like posing
+
+==================================================
+TEXT HIERARCHY RULES
+====================
+
+Use ONLY ONE dominant text.
+
+Avoid:
+
+* overcrowded text
+* multiple competing phrases
+
+Preferred text:
+
+* short
+* aggressive
+* emotional
+* highly readable
+
+Examples:
+
+* ONE SHOT FOUR BODIES
+* THEY PUSHED THE WRONG PLAYER
+* THIS SHOULD BE IMPOSSIBLE
+* 1 HP DEMON
+
+==================================================
+CAMERA FRAMING AI
+=================
+
+Use:
+
+* Close Face framing
+* Mid Combat framing
+* Chaos Focus framing
+
+The main character must dominate the thumbnail.
+
+The face should remain clearly visible on mobile screens.
+
+==================================================
+PERFORMANCE REQUIREMENTS
+========================
+
+Even with:
+
+* 10,000+ templates
+* animations
+* cinematic UI
+* large creator ecosystem
+
+The app must remain:
+
+* fast
+* smooth
+* lightweight
+* scalable
+* responsive
+
+Use:
+
+* lazy loading
+* infinite scrolling
+* optimized image caching
+* CDN optimization
+* scalable backend architecture
+
+==================================================
+FINAL PRODUCT GOAL
+==================
+
+CreatorCore should ultimately feel like:
+
+* Canva for gaming creators
+* cinematic AI creator studio
+* creator marketplace
+* thumbnail engineering platform
+* next-generation creator ecosystem
+
+NOT:
+
+* a hobby project
+* a basic AI website
+* a small image generator
+* a simple Replit prototype

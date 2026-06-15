@@ -1,0 +1,108 @@
+IMPORTANT: Add Instagram-specific intelligent content options inside the "SELECT CATEGORY" section area (red marked area in screenshot).
+
+Right now:
+the Platform area already has advanced Instagram intelligence:
+- Reel
+- Story
+- Post
+- Carousel
+- Style
+- Intent
+
+But the SELECT CATEGORY section still feels generic.
+
+==================================================
+
+REQUIRED CHANGE
+
+When user selects:
+Instagram
+
+the SELECT CATEGORY section should dynamically adapt for Instagram creator workflows.
+
+==================================================
+
+EXAMPLE INSTAGRAM CATEGORY STRUCTURE
+
+For Instagram Reels:
+- Viral Reel
+- Trending Audio
+- Hook Caption
+- Reel Hashtags
+- Engagement Caption
+- Short-form CTA
+
+For Instagram Story:
+- Story Caption
+- Aesthetic Story Text
+- Mood Quote
+- Poll/Question Hook
+- Story Hashtags
+
+For Instagram Post:
+- Feed Caption
+- Carousel Caption
+- Aesthetic Post
+- Personal Branding
+- Engagement Post
+
+==================================================
+
+IMPORTANT UX GOAL
+
+The red marked "SELECT CATEGORY" area should become:
+context-aware based on selected platform/subtype.
+
+Meaning:
+
+Instagram + Reel
+→ show Reel-related creator categories
+
+Instagram + Story
+→ show Story-related creator categories
+
+Instagram + Post
+→ show Feed/Post-related creator categories
+
+==================================================
+
+IMPORTANT
+
+Do NOT redesign the current UI.
+
+Maintain:
+- current cinematic style
+- current card design
+- violet/fuchsia identity
+- current spacing
+- glassmorphism
+
+ONLY:
+make the category system dynamically adapt to Instagram creator workflows.
+
+==================================================
+
+GENERATION IMPROVEMENT
+
+All selected Instagram-specific category data should be threaded into Gemini generation context.
+
+This improves:
+- hashtags
+- captions
+- creator relevance
+- platform optimization
+- engagement quality
+
+==================================================
+
+EXAMPLE FLOW
+
+Instagram
+→ Reel
+→ Viral Reel
+→ Hook Caption
+→ Engagement
+
+This should feel like:
+a smart creator assistant,
+not static form inputs.

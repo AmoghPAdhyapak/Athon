@@ -1,0 +1,274 @@
+You are an expert full-stack AI application architect and senior UI/UX engineer.
+
+Your task is to transform the existing AI Caption Generator API into a professional AI-powered Creator Assistant platform focused on gaming creators, montage editors, YouTubers, Instagram creators, anime editors, and short-form content creators.
+
+The application must work smoothly on:
+- Mobile devices
+- Desktop systems
+- Web browsers
+
+Main Goal:
+Build a multimodal AI Creator Assistant that allows users to upload an image/screenshot from their gameplay, montage, reel, anime edit, or social-media content, explain the situation, and receive optimized creator assets generated using Gemini Vision AI.
+
+Tech Stack:
+Frontend:
+- React
+- Tailwind CSS
+- Framer Motion
+- Responsive design
+
+Backend:
+- Node.js
+- Express.js
+
+AI:
+- Google Gemini Vision API
+- Gemini Text API
+
+Storage:
+- Local storage initially
+- Easy upgrade path to Firebase/Supabase later
+
+Deployment:
+- Vercel frontend
+- Render/Railway backend
+
+Core Concept:
+The app should NOT behave like a generic AI caption generator.
+
+It should behave like:
+“An AI Thumbnail & Creator Intelligence Assistant.”
+
+Users should feel like they are getting:
+- Viral thumbnail ideas
+- Creator psychology optimization
+- Platform-specific packaging
+- Cinematic creator assistance
+
+==================================================
+MAIN USER FLOW
+==================================================
+
+1. User uploads image
+   - Gameplay screenshot
+   - Montage frame
+   - Anime edit
+   - Reel screenshot
+   - YouTube thumbnail draft
+
+2. User explains the situation
+Example:
+“1v4 clutch revenge scene with red aura and desert eagle.”
+
+3. User selects:
+- Platform
+- Mood
+- Style
+
+4. Gemini Vision analyzes:
+- Scene composition
+- Character focus
+- Mood
+- Action intensity
+- Color energy
+- Emotional tone
+
+5. AI generates:
+- Thumbnail text
+- YouTube titles
+- Viral hooks
+- Captions
+- Hashtags
+- Thumbnail layout suggestions
+- Text placement ideas
+- Color suggestions
+
+==================================================
+CORE FEATURES
+==================================================
+
+1. Image Upload System
+- Drag and drop
+- Mobile gallery upload
+- Preview before analyze
+- Compression optimization
+
+2. Gemini Vision Analysis
+Analyze:
+- Main subject
+- Weapon/action
+- Scene emotion
+- Color palette
+- Lighting intensity
+- Cinematic feel
+
+3. AI Outputs
+Generate:
+- Thumbnail text
+- Viral hooks
+- Titles
+- Captions
+- Hashtags
+- CTA lines
+- Layout ideas
+
+4. Platform Optimization
+Different outputs for:
+- YouTube
+- YouTube Shorts
+- Instagram
+- Reels
+- TikTok
+- Facebook
+- X/Twitter
+
+5. Mood Engine
+User can select:
+- Rage
+- Revenge
+- Dark
+- Emotional
+- Heroic
+- Funny
+- Clutch
+- Aggressive
+- Cinematic
+
+6. Style Engine
+Styles:
+- Anime Aura
+- Esports
+- Cinematic
+- Neon
+- Fire
+- Dark Mode
+- Hyper-realistic
+- Action Movie
+
+==================================================
+THUMBNAIL INTELLIGENCE FEATURE
+==================================================
+
+Generate suggestions like:
+
+{
+  "thumbnailText": [
+    "THEY PUSHED THE WRONG PLAYER",
+    "REVENGE MODE ACTIVATED"
+  ],
+
+  "layoutSuggestion": {
+    "textPosition": "top-left",
+    "focusObject": "main character",
+    "recommendedColors": [
+      "red",
+      "orange",
+      "black"
+    ],
+    "effects": [
+      "motion blur",
+      "fire particles",
+      "glow outline"
+    ]
+  }
+}
+
+==================================================
+API UPGRADES
+==================================================
+
+Transform current caption API into multimodal creator API.
+
+Add new endpoint:
+
+POST /analyze/generate-thumbnail
+
+New request structure:
+
+{
+  "platform": "YouTube",
+  "style": "Cinematic",
+  "mood": "Revenge",
+  "game": "Free Fire",
+  "situation": "1v4 clutch revenge scene",
+  "thumbnailGoal": "high CTR",
+  "image": "uploaded-image",
+  "generate": [
+    "thumbnail_text",
+    "title",
+    "caption",
+    "hashtags",
+    "layout_idea"
+  ]
+}
+
+==================================================
+UI/UX REQUIREMENTS
+==================================================
+
+Theme:
+- Dark cinematic UI
+- Gaming-inspired visuals
+- Smooth animations
+- Professional startup feel
+
+UI Features:
+- Responsive layouts
+- Sidebar on desktop
+- Bottom nav on mobile
+- Smooth transitions
+- Animated loading states
+- Card-based outputs
+- Copy/share buttons
+- Save outputs locally
+- History section
+- Usage statistics
+
+Visual Feel:
+- Premium
+- Futuristic
+- Creator-focused
+- Esports aesthetic
+
+==================================================
+IMPORTANT REQUIREMENTS
+==================================================
+
+- DO NOT build a generic AI chat interface.
+- DO NOT overload the app with unnecessary features.
+- Focus on creator assistance and thumbnail intelligence.
+- Keep architecture modular and scalable.
+- Keep code beginner-friendly but production-ready.
+- Separate frontend and backend cleanly.
+- Use async API handling properly.
+- Add proper error handling.
+- Optimize image upload performance.
+- Add loading skeletons during AI generation.
+- Ensure full responsiveness on:
+  - Phone
+  - Tablet
+  - Desktop
+
+==================================================
+OUTPUT REQUIREMENTS
+==================================================
+
+Generate:
+1. Full project folder structure
+2. Frontend code
+3. Backend code
+4. Gemini Vision integration
+5. Image upload handling
+6. API routes
+7. Responsive UI components
+8. Tailwind styling
+9. State management
+10. Deployment instructions
+11. Environment variable setup
+12. Vercel deployment guide
+13. Render/Railway backend guide
+14. PWA support instructions
+15. Play Store conversion instructions
+
+Final product should feel like:
+“A professional AI-powered creator toolkit designed for modern gaming and social-media creators.”

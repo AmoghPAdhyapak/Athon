@@ -1,0 +1,153 @@
+IMPORTANT: CHANGE THE APP ENTRY FLOW TO FEEL LIKE A REAL PUBLIC CREATOR APPLICATION.
+
+Current issue:
+The app opens directly into the dashboard/home workspace.
+
+This makes the product feel:
+
+* like a website
+* like a dashboard
+* like a prototype
+
+Instead, the app should feel:
+
+* cinematic
+* immersive
+* app-like
+* professional
+* creator-focused
+
+==================================================
+REQUIRED APP ENTRY FLOW
+=======================
+
+New startup flow:
+
+User opens app
+↓
+Cinematic splash screen/logo animation
+↓
+Session/authentication check
+↓
+IF user already logged in:
+→ open Home dashboard directly
+
+ELSE:
+→ open dedicated Login/Signup page
+
+==================================================
+
+1. SPLASH SCREEN
+   ==================================================
+
+Create:
+a cinematic startup experience.
+
+Requirements:
+
+* full-screen splash screen
+* animated AETHON / CreatorCore logo
+* smooth fade/glow animation
+* cinematic loading feel
+* subtle particles/glassmorphism
+* dark premium atmosphere
+
+Duration:
+~2 seconds maximum
+
+After animation:
+automatically continue to auth/session logic.
+
+==================================================
+2. SESSION CHECK LOGIC
+======================
+
+After splash:
+check existing authentication session.
+
+If session exists:
+→ redirect directly to Home dashboard
+
+If no session:
+→ redirect to dedicated Auth page
+
+IMPORTANT:
+Users should NOT repeatedly see login if already authenticated.
+
+==================================================
+3. DEDICATED AUTH PAGE
+======================
+
+DO NOT use a simple popup auth modal.
+
+Create:
+a real cinematic full-screen authentication page.
+
+The auth page should feel:
+
+* premium
+* immersive
+* modern
+* creator-focused
+
+==================================================
+AUTH PAGE LAYOUT
+================
+
+LEFT SIDE:
+
+* cinematic branding
+* creator showcase
+* AI-generated thumbnails
+* creator examples
+* platform identity
+* tagline
+* motion/ambient effects
+
+RIGHT SIDE:
+
+* Login form
+* Signup form
+* Google auth
+* Clerk integration
+* smooth transitions
+* glassmorphism card
+
+==================================================
+AUTH UX REQUIREMENTS
+====================
+
+* smooth transitions
+* no abrupt redirects
+* preserve cinematic atmosphere
+* app-like navigation
+* premium onboarding feel
+
+==================================================
+IMPORTANT
+=========
+
+The dashboard/home page should ONLY appear:
+AFTER:
+
+* successful login
+  OR
+* existing authenticated session
+
+==================================================
+GOAL
+====
+
+The app should emotionally feel like:
+
+* Canva
+* CapCut
+* Discord
+* Spotify
+* modern creator software
+
+NOT:
+
+* a random dashboard website
+* a prototype landing page
+* a direct-to-dashboard admin panel

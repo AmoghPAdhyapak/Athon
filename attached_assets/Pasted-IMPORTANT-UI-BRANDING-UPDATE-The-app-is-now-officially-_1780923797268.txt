@@ -1,0 +1,141 @@
+IMPORTANT UI/BRANDING UPDATE
+
+The app is now officially renamed to:
+
+AETHON
+
+The uploaded AETHON logo image is now:
+
+* the official app logo
+* the official splash screen logo
+* the official brand identity
+
+==================================================
+
+REQUIRED IMPLEMENTATION
+
+==================================================
+
+1. SPLASH SCREEN SYSTEM
+
+When the app launches:
+
+* show cinematic splash screen
+* black/dark background
+* display AETHON logo centered
+* subtle premium glow animation
+* soft cinematic fade-in
+* subtle light sweep effect
+* smooth fade transition into app
+
+IMPORTANT:
+Keep this PREMIUM and PROFESSIONAL.
+
+Avoid:
+
+* cringe game intro effects
+* excessive particles
+* overdramatic animation
+* long loading intros
+
+Target feel:
+
+* modern creator software
+* cinematic startup identity
+* premium application launch
+
+Duration:
+2–3 seconds maximum.
+
+==================================================
+
+2. DARK MODE / LIGHT MODE SYSTEM
+
+Implement full theme switching.
+
+Requirements:
+
+* dark mode
+* light mode
+* persistent theme state
+* save preference in localStorage
+* smooth theme transition
+* app-wide theme support
+
+==================================================
+
+THEME REQUIREMENTS
+
+==================================================
+
+Dark Mode:
+
+* cinematic
+* immersive
+* creator-focused
+* premium dark UI
+
+Light Mode:
+
+* soft premium light UI
+* warm gray tones
+* subtle glassmorphism
+* professional studio feel
+
+IMPORTANT:
+Avoid:
+
+* pure white harsh UI
+* generic admin dashboard feeling
+
+==================================================
+
+IMPLEMENTATION REQUIREMENTS
+
+==================================================
+
+Use:
+
+* Tailwind dark class strategy
+* ThemeProvider/context system
+* clean reusable architecture
+
+Add:
+
+* theme toggle in Settings/profile area
+* optional quick toggle in navbar/sidebar
+
+==================================================
+
+IMPORTANT
+
+==================================================
+
+The app identity must remain consistent in BOTH themes.
+
+AETHON should feel:
+
+* cinematic
+* premium
+* futuristic
+* creator-focused
+
+in both dark and light mode.
+
+==================================================
+
+FINAL GOAL
+
+==================================================
+
+AETHON should feel like:
+
+* premium creator software
+* cinematic creator operating system
+* modern AI-assisted platform
+
+NOT:
+
+* generic dashboard
+* game launcher
+* random flashy UI experiment

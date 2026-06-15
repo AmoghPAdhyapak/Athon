@@ -1,0 +1,108 @@
+IMPORTANT: FRONTEND ROUTING AND PAGE STATE MANAGEMENT IS CURRENTLY BROKEN.
+
+Current issue:
+Sidebar navigation is NOT rendering the correct independent pages.
+
+Examples:
+
+* Clicking Templates sometimes shows Create page content
+* Clicking Analyze shows unrelated/stale content
+* Multiple sections appear to reuse the same UI state
+* Navigation feels random and unstable
+
+This breaks the illusion of a real application.
+
+==================================================
+REQUIRED FIX
+============
+
+Each sidebar section must have:
+
+* its OWN isolated route
+* its OWN isolated component
+* its OWN independent page state
+* its OWN loading logic
+* its OWN content rendering
+
+==================================================
+PROBLEM LIKELY CAUSED BY
+========================
+
+Possible causes:
+
+* shared component state
+* incorrect React routing
+* stale cached components
+* reused layouts without reset
+* improper route rendering
+* improper state persistence
+* route hydration mismatch
+* incorrect sidebar route mapping
+
+==================================================
+REQUIRED APP STRUCTURE
+======================
+
+Each section must behave like a REAL APP PAGE.
+
+Required independent routes:
+
+/home
+/templates
+/create
+/analyze
+/gallery
+/saved
+/history
+/stats
+/profile
+/settings
+
+==================================================
+IMPORTANT REQUIREMENTS
+======================
+
+When switching pages:
+
+* previous page state should NOT leak
+* unrelated UI should NOT appear
+* correct component should mount cleanly
+* transitions should remain smooth
+* navigation should feel app-like
+
+==================================================
+CACHE / STATE FIX
+=================
+
+Ensure:
+
+* proper route rendering
+* route-level state isolation
+* component cleanup on navigation
+* proper React state management
+* no stale cached UI
+* no incorrect page persistence
+
+==================================================
+UX GOAL
+=======
+
+The app should feel like:
+
+* a real desktop application
+* professional creator software
+* properly structured creator platform
+
+NOT:
+
+* random reusable pages
+* broken dashboard prototype
+* unstable frontend routing system
+
+==================================================
+IMPORTANT
+=========
+
+Every sidebar button must ALWAYS open the correct dedicated page consistently.
+
+The frontend architecture should feel stable, predictable, and professional.

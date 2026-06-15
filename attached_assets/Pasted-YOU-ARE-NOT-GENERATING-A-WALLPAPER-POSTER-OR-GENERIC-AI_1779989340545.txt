@@ -1,0 +1,293 @@
+YOU ARE NOT GENERATING A WALLPAPER, POSTER, OR GENERIC AI ART.
+
+You are generating a HIGH CTR PROFESSIONAL YOUTUBE GAMING THUMBNAIL optimized for:
+
+* mobile visibility
+* emotional impact
+* click-through-rate
+* cinematic storytelling
+* gaming audience psychology
+
+IMPORTANT:
+The uploaded image is the PRIMARY visual reference.
+
+PRESERVE:
+
+* character appearance
+* face structure
+* pose direction
+* atmosphere
+* cinematic lighting
+* jungle environment
+* fire effects
+* composition style
+* emotional tone
+
+DO NOT redesign the character completely.
+
+DO NOT generate a random new composition.
+
+The output must feel like:
+“a professionally enhanced evolution of the uploaded thumbnail”
+
+NOT:
+“a completely different AI-generated artwork.”
+
+==================================================
+PLATFORM & ASPECT RATIO RULES
+=============================
+
+Target Platform:
+YouTube
+
+Required Aspect Ratio:
+16:9 widescreen cinematic thumbnail
+
+Generate a cinematic 16:9 widescreen gaming thumbnail optimized for YouTube desktop and mobile viewing.
+
+IMPORTANT:
+DO NOT simply stretch or crop the uploaded image.
+
+Instead:
+
+* intelligently recompose the scene
+* preserve the main subject
+* maintain facial visibility
+* preserve weapon visibility
+* maintain storytelling clarity
+* optimize layout for the selected platform
+
+Platform Ratios:
+
+* YouTube: 16:9
+* YouTube Shorts: 9:16
+* TikTok: 9:16
+* Instagram Post: 1:1
+* Instagram Story: 9:16
+* Facebook Post: 1:1
+* X/Twitter: 16:9
+
+For widescreen:
+
+* expand environmental storytelling
+* maintain strong left-right composition
+
+For vertical:
+
+* prioritize character height
+* stack visual elements vertically
+* maintain mobile readability
+
+For square:
+
+* centralize emotional focus
+* maintain balanced framing
+
+==================================================
+CTR THUMBNAIL RULES
+===================
+
+This thumbnail must:
+
+* instantly grab attention
+* create curiosity
+* feel dangerous
+* feel emotional
+* feel high-stakes
+* communicate action in under 1 second
+
+The thumbnail should make viewers think:
+“WHAT HAPPENED HERE?”
+
+==================================================
+FACIAL EMOTION REQUIREMENTS
+===========================
+
+The main character must show:
+
+* intense focus
+* combat emotion
+* survival pressure
+* rage or dominance
+* glowing eyes or dramatic eye lighting
+* realistic facial tension
+* battle survivor energy
+
+Avoid:
+
+* neutral expressions
+* mannequin faces
+* emotionless posing
+* calm expressions
+
+==================================================
+ACTION POSE REQUIREMENTS
+========================
+
+The character must feel:
+
+* active
+* dangerous
+* combat-ready
+* aggressive
+
+Add:
+
+* dynamic combat posture
+* slight forward lean
+* weapon-ready stance
+* recoil energy
+* movement tension
+* survival body language
+
+Avoid:
+
+* static standing pose
+* fashion pose
+* stiff posture
+
+==================================================
+MOTION & ENERGY FLOW
+====================
+
+The scene must feel alive and explosive.
+
+Add:
+
+* flying debris
+* sparks direction
+* motion blur
+* smoke trails
+* fire particles
+* diagonal movement
+* cinematic camera motion
+* environmental destruction
+* battlefield chaos
+
+Use:
+
+* tilted cinematic camera angle
+* asymmetrical composition
+* directional energy flow
+
+Avoid:
+
+* frozen scenes
+* flat composition
+* static environments
+
+==================================================
+VISUAL STORYTELLING
+===================
+
+This is:
+THE ULTIMATE 1V4 CLUTCH IN FREE FIRE
+
+The thumbnail must clearly show:
+
+* danger
+* survival pressure
+* dominance
+* aftermath of battle
+* defeated enemies
+* high-stakes combat
+
+The environment should feel:
+
+* dark jungle battlefield
+* cinematic fire atmosphere
+* intense and dangerous
+
+==================================================
+LIGHTING RULES
+==============
+
+Use:
+
+* cinematic high contrast lighting
+* strong rim lighting
+* dramatic shadows
+* glowing fire reflections
+* orange/red fire lighting
+* dark jungle atmosphere
+
+Lighting hierarchy:
+
+1. face
+2. weapon
+3. fire effects
+
+The face must remain highly visible.
+
+==================================================
+TEXT HIERARCHY RULES
+====================
+
+Use ONLY ONE dominant text.
+
+DO NOT overcrowd the thumbnail with multiple competing text elements.
+
+Preferred text style:
+
+* short
+* aggressive
+* emotional
+* highly readable
+
+Examples:
+
+* ONE SHOT FOUR BODIES
+* THEY PUSHED THE WRONG PLAYER
+* 1 HP DEMON
+* THIS SHOULD BE IMPOSSIBLE
+
+Text must:
+
+* be large
+* readable on mobile
+* high contrast
+* properly placed
+
+==================================================
+CAMERA FRAMING AI
+=================
+
+Use:
+
+* Close Face framing
+* Mid Combat framing
+* Chaos Focus framing
+
+The main character must dominate the thumbnail.
+
+The face should NOT appear too small on mobile screens.
+
+==================================================
+STYLE REQUIREMENTS
+==================
+
+Style:
+
+* Hyper detailed
+* Cinematic
+* Esports quality
+* Modern gaming thumbnail style
+* Fire-themed
+* Dark jungle atmosphere
+* High-energy visual design
+
+The final thumbnail must feel:
+
+* viral
+* emotional
+* cinematic
+* dangerous
+* explosive
+* highly clickable
+
+NOT:
+
+* generic AI art
+* wallpaper
+* static poster
+* emotionless composition

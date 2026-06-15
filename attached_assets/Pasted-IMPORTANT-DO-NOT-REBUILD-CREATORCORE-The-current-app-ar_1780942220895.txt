@@ -1,0 +1,955 @@
+IMPORTANT: DO NOT REBUILD CREATORCORE.
+
+The current app architecture already works correctly:
+
+* React frontend
+* Wouter routing
+* Gemini integrations
+* cinematic UI
+* sidebar navigation
+* generation flow
+* templates system
+* analyze system
+
+The next step is:
+WORKFLOW EXPANSION + PLATFORM INTELLIGENCE + SCENE DECODER INTEGRATION.
+
+==================================================
+CONTEXT
+=======
+
+I already received the implementation code externally.
+
+I will now paste the code manually.
+
+Your job is:
+
+* integrate the provided code properly into the current Replit project
+* preserve current architecture
+* preserve current UI direction
+* preserve existing functionality
+* avoid breaking routes/components
+
+DO NOT redesign the app from scratch.
+
+==================================================
+NEW FEATURES BEING ADDED
+========================
+
+##################################################
+
+1. PLATFORM SUBTYPE INTELLIGENCE
+   ##################################################
+
+Current issue:
+Platforms are treated too generically.
+
+Example:
+Instagram currently behaves as one single platform.
+
+But real creator workflows require:
+
+* Reels
+* Stories
+* Posts
+* Carousels
+
+Same for:
+YouTube:
+
+* Long Video
+* Shorts
+* Community Post
+
+TikTok:
+
+* Viral Clip
+* Story Style
+* Trend Hook
+
+==================================================
+REQUIRED RESULT
+===============
+
+When a platform is selected:
+the UI must dynamically show subtype options.
+
+Generation logic must adapt according to subtype.
+
+Examples:
+
+Instagram Story:
+
+* shorter text
+* emotional pacing
+* swipe-focused behavior
+
+Instagram Reel:
+
+* hook-heavy
+* engagement-focused
+* trendy formatting
+
+YouTube Shorts:
+
+* fast curiosity hooks
+* retention-oriented wording
+
+YouTube Long Video:
+
+* SEO-oriented
+* searchable cinematic packaging
+
+==================================================
+2. SCENE DECODER FEATURE
+========================
+
+A completely new creator workflow tool is being added.
+
+Purpose:
+User uploads image →
+Gemini analyzes image →
+AI generates:
+
+* cinematic description
+* creator-ready prompt
+* mood analysis
+* composition analysis
+* creator workflow text
+
+==================================================
+IMPORTANT
+=========
+
+This feature should feel:
+like an AI cinematic visual interpreter.
+
+NOT:
+a basic image description tool.
+
+==================================================
+EXPECTED SCENE DECODER WORKFLOW
+===============================
+
+Upload image
+→ AI analysis
+→ cinematic breakdown
+→ copyable creator-ready text
+→ optionally reuse inside:
+
+* Templates
+* Create
+* Analyze
+
+==================================================
+IMPORTANT IMPLEMENTATION NOTES
+==============================
+
+The implementation code already exists.
+
+I will paste:
+
+* frontend code
+* backend code
+* Gemini integration code
+* routing additions
+* component structure
+
+Your task is:
+
+* integrate it safely
+* place files correctly
+* wire routes correctly
+* preserve existing architecture
+* resolve conflicts if needed
+* ensure imports work correctly
+* ensure components mount correctly
+
+==================================================
+VERY IMPORTANT
+==============
+
+DO NOT:
+
+* rewrite unrelated systems
+* change the existing UI identity completely
+* break current generation flow
+* replace current architecture
+* create duplicate routing systems
+
+PRESERVE:
+
+* cinematic design
+* dark creator UI
+* current sidebar structure
+* existing page transitions
+* current AI pipeline
+
+==================================================
+EXPECTED FINAL RESULT
+=====================
+
+CreatorCore should now evolve into:
+
+* platform-aware creator system
+* AI-assisted creator workflow
+* cinematic creator ecosystem
+* intelligent creator software
+
+The app should feel:
+professional,
+cinematic,
+workflow-oriented,
+and creator-focused.
+
+==================================================
+NEXT STEP
+=========
+
+I will now paste the implementation code.
+
+Analyze the code carefully before modifying the existing project structure.
+(Architectural System Modification Strategy
+To avoid breaking the existing OpenAPI contract-first generation architecture or disrupting the existing routing system (wouter), we will execute a clean, decoupled dual-module upgrade:
+
+Subtype Intelligence Matrix: We expand the payload contract of the existing caption/text studio to include a secondary structural state variable: platformSubtype. The frontend prompt orchestration pipeline injects highly-segmented mechanical constraints based on the specific media platform selected.
+
+Scene Decoder (AI Visual Interpreter Engine): We deploy a specialized route and component view paired with a dedicated streaming backend endpoint. This uses a multimodal vision configuration to extract production-ready asset parameters from an uploaded frame image.
+
+Part 1: Backend System Upgrades (api-server)
+1. Express Route Registration & Endpoint Handlers
+Add these direct endpoints to your routing layer (artifacts/api-server/src/routes/ or your central engine index file) to process the raw multimodal image buffers and subtype strings.
+
+TypeScript
+// artifacts/api-server/src/routes/platformIntelligence.ts
+import { Router, Request, Response, NextFunction } from "express";
+import { GoogleGenAI } from "@google/genai"; // Standard Replit Gemini AI Integrations wrapper
+import { requireAuth } from "../lib/auth"; // Existing Clerk middleware route protection
+
+export const platformIntelligenceRouter = Router();
+
+// Initialize the backend Gemini Client tracking layer
+const ai = new GoogleGenAI();
+
+/**
+ * ENDPOINT 1: Advanced Scene Decoder (AI Cinematic Visual Interpreter)
+ * POST /api/analyze/scene-decoder
+ */
+platformIntelligenceRouter.post(
+  "/analyze/scene-decoder",
+  requireAuth,
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const { imageBase64, mimeType } = req.body;
+
+      if (!imageBase64) {
+        res.status(400).json({ error: "Missing required parameter: imageBase64 string data buffer." });
+        return;
+      }
+
+      // Configure direct structural response parameters to ensure a deterministic object output
+      const responseSchema = {
+        type: "object",
+        properties: {
+          sceneDescription: { type: "string" },
+          cinematicBreakdown: { type: "string" },
+          moodAnalysis: { type: "string" },
+          compositionAnalysis: { type: "string" },
+          lightingAnalysis: { type: "string" },
+          creatorReadyPrompt: { type: "string" },
+          emotionalTone: { type: "string" },
+          captionSuggestions: {
+            type: "array",
+            items: { type: "string" }
+          }
+        },
+        required: [
+          "sceneDescription", 
+          "cinematicBreakdown", 
+          "moodAnalysis", 
+          "compositionAnalysis", 
+          "lightingAnalysis", 
+          "creatorReadyPrompt", 
+          "emotionalTone", 
+          "captionSuggestions"
+        ]
+      };
+
+      const systemInstruction = 
+        "You are an expert AI cinematic engineer, director of photography, and viral creator strategist. " +
+        "Analyze the provided image file asset and deliver a deep architectural metadata decomposition. " +
+        "Do not use generic text or basic OCR summaries. Extract lighting values, camera angles, color grading profiles, " +
+        "and generate a prompt string ready for stable asset synthesis pipelines.";
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: [
+          {
+            inlineData: {
+              mimeType: mimeType || "image/jpeg",
+              data: imageBase64
+            }
+          },
+          "Perform a comprehensive cinematic scene decode on this visual asset."
+        ],
+        config: {
+          systemInstruction,
+          responseMimeType: "application/json",
+          responseSchema: responseSchema,
+          temperature: 0.2
+        }
+      });
+
+      const parsedTelemetry = JSON.parse(response.text);
+      res.status(200).json(parsedTelemetry);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+/**
+ * ENDPOINT 2: Platform Subtype Streaming Prompt Orchestrator
+ * POST /api/captions/generate-platform-subtype
+ */
+platformIntelligenceRouter.post(
+  "/api/captions/generate-platform-subtype",
+  requireAuth,
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const { platform, subtype, prompt, tonalTrack } = req.body;
+
+      if (!platform || !subtype || !prompt) {
+        res.status(400).json({ error: "Required structural validation flags missing: platform, subtype, prompt." });
+        return;
+      }
+
+      // Establishes exact psychological context constraints based on platform content variants
+      let contextualConstraint = "";
+      if (platform === "Instagram") {
+        if (subtype === "Reel") contextualConstraint = "Hook-heavy, trend-aligned pacing, short-burst readability, maximize retention spikes within 3 seconds.";
+        if (subtype === "Story") contextualConstraint = "Direct, highly emotional, urgency-driven, conversational framing designed to compel immediate tap/swipe interactions.";
+        if (subtype === "Carousel") contextualConstraint = "Slide-by-slide continuity narrative, sequential information blocks, cliffhanger pagination transitions.";
+      } else if (platform === "YouTube") {
+        if (subtype === "Shorts") contextualConstraint = "Extreme high-curiosity looping mechanics, rapid attention capture, punchy short sentences with optimized visual descriptions.";
+        if (subtype === "Long Video") contextualConstraint = "Deep SEO-optimized indexing parameters, structured content breakdown chapters, high-click searchable semantic presentation.";
+        if (subtype === "Community Post") contextualConstraint = "Engagement poll scaffolding, high community interaction markers, text-first audience relationship conversation tracking.";
+      } else if (platform === "TikTok") {
+        if (subtype === "Viral Clip") contextualConstraint = "Algorithm hyper-optimized hook syntax, immediate action verb injection, viral phonetic styling patterns.";
+        if (subtype === "Trend Hook") contextualConstraint = "Audio integration metadata references, community inside-joke references, aggressive viewer retention framing.";
+      }
+
+      const compositeSystemPrompt = 
+        `You are a senior algorithmic platforms strategist. Craft metadata presentation output for target platform: [${platform}] matching context subtype: [${subtype}].\n` +
+        `Enforce these formatting parameters precisely: ${contextualConstraint}\n` +
+        `Tone state: ${tonalTrack || "Cinematic Core"}. Primary subject prompt: ${prompt}`;
+
+      // Execute stream chunk delivery to the frontend using clear demarcated stream chunks
+      res.setHeader("Content-Type", "text/event-stream");
+      res.setHeader("Cache-Control", "no-cache");
+      res.setHeader("Connection", "keep-alive");
+
+      const responseStream = await ai.models.generateContentStream({
+        model: "gemini-2.5-flash",
+        contents: compositeSystemPrompt,
+        config: { temperature: 0.7 }
+      });
+
+      for await (const chunk of responseStream) {
+        if (chunk.text) {
+          res.write(`data: ${JSON.stringify({ text: chunk.text })}\n\n`);
+        }
+      }
+
+      res.write("data: [DONE]\n\n");
+      res.end();
+    } catch (error) {
+      res.write(`data: ${JSON.stringify({ error: "Internal compilation failure inside engine pipeline tracking." })}\n\n`);
+      res.end();
+    }
+  }
+);
+Part 2: Frontend Layout & Feature Integration (caption-generator)
+1. Adding the New Workspace Blueprint View
+Add this standalone view to src/components/layout/WorkspaceLayouts.tsx (or your existing layouts folder) to give the Scene Decoder its signature dual-pane engineering look.
+
+TypeScript
+// Append to src/components/layout/WorkspaceLayouts.tsx
+
+interface DecoderLayoutProps {
+  children: React.ReactNode;
+  title: string;
+  statusText?: string;
+}
+
+/**
+ * SceneDecoderLayout
+ * Purpose: Provides an engineering-grade, split-pane layout with asymmetrical viewports for image asset diagnostics.
+ */
+export function SceneDecoderLayout({ children, title, statusText = "DECODER ACTIVE" }: DecoderLayoutProps) {
+  return (
+    <div className="w-full min-h-screen bg-[#07060b] text-foreground flex flex-col">
+      <div className="h-16 border-b border-border/30 bg-card/10 backdrop-blur-md px-6 md:px-8 flex items-center justify-between shrink-0 z-10 relative">
+        <div className="flex items-center gap-3">
+          <div className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.5)]" />
+          <h1 className="text-sm font-mono tracking-widest uppercase font-bold text-foreground">{title}</h1>
+        </div>
+        <div className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2.5 py-1 rounded tracking-wider">
+          {statusText}
+        </div>
+      </div>
+      <div className="flex-1 w-full max-w-[1750px] mx-auto p-4 md:p-6 lg:p-8 xl:p-10 grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch relative z-10">
+        {children}
+      </div>
+    </div>
+  );
+}
+2. Upgrading Routing and Navigation Shell Core (src/App.tsx)
+Register the new /scene-decoder workspace view directly inside the main switch router block.
+
+TypeScript
+// Inside src/App.tsx - Locate your <Switch> route block and add the entry point
+import SceneDecoder from "@/pages/SceneDecoder";
+
+// Within ShellRouter:
+<Switch location={location}>
+  <Route path="/" component={Home} />
+  <Route path="/templates" component={Templates} />
+  <Route path="/create"><RequireAuth><Create /></RequireAuth></Route>
+  <Route path="/analyze"><RequireAuth><Analyze /></RequireAuth></Route>
+  {/* NEW DEDICATED WORKSPACE DEPLOYMENT ENGINE ENTRY */}
+  <Route path="/scene-decoder"><RequireAuth><SceneDecoder /></RequireAuth></Route>
+  <Route path="/gallery"><RequireAuth><Gallery /></RequireAuth></Route>
+  <Route path="/saved"><RequireAuth><Saved /></RequireAuth></Route>
+  <Route path="/history"><RequireAuth><History /></RequireAuth></Route>
+  <Route path="/stats"><RequireAuth><Stats /></RequireAuth></Route>
+  <Route path="/profile"><RequireAuth><Profile /></RequireAuth></Route>
+  <Route path="/settings"><RequireAuth><Settings /></RequireAuth></Route>
+  <Route component={NotFound} />
+</Switch>
+Add the tracking link item inside src/components/layout/Sidebar.tsx so users can access the tool:
+
+TypeScript
+// Inside your array of sidebar navigation links in Sidebar.tsx:
+{
+  name: "Scene Decoder",
+  href: "/scene-decoder",
+  icon: EyeIcon // Ensure you import Eye from lucide-react
+}
+3. Refactoring the Creation View with Platform Subtype Intelligence (src/pages/Create.tsx)
+This upgrades your existing copy of Create.tsx to handle nested platform subtypes and coordinate with the asset text engine via server-sent events (SSE).
+
+TypeScript
+import { useState, useEffect } from "react";
+import { StudioLayout } from "@/components/layout/WorkspaceLayouts";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Sparkles, RefreshCw, Layers, Radio, Copy, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+type PlatformType = "Instagram" | "YouTube" | "TikTok" | "Facebook";
+
+const SUBTYPE_MATRIX: Record<PlatformType, string[]> = {
+  Instagram: ["Reel", "Story", "Post", "Carousel"],
+  YouTube: ["Long Video", "Shorts", "Community Post"],
+  TikTok: ["Viral Clip", "Story Style", "Trend Hook"],
+  Facebook: ["Post", "Story", "Reel"]
+};
+
+export default function Create() {
+  const { toast } = useToast();
+  
+  // Workspace UI Configuration States
+  const [prompt, setPrompt] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>("Instagram");
+  const [selectedSubtype, setSelectedSubtype] = useState("Reel");
+  const [tonalTrack, setTonalTrack] = useState("Cinematic Focus");
+  
+  // Streaming Execution Processing Pipeline States
+  const [outputStream, setOutputStream] = useState("");
+  const [isCompiling, setIsCompiling] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
+
+  // Sync state tracking if the selected platform changes
+  useEffect(() => {
+    setSelectedSubtype(SUBTYPE_MATRIX[selectedPlatform][0]);
+  }, [selectedPlatform]);
+
+  // Read incoming cross-page handoffs from session cache if populated by the Scene Decoder
+  useEffect(() => {
+    const cachedPrompt = sessionStorage.getItem("creatorcore:staged_prompt");
+    if (cachedPrompt) {
+      setPrompt(cachedPrompt);
+      sessionStorage.removeItem("creatorcore:staged_prompt");
+      toast({ title: "Prompt Context Restored", description: "Scene Decoder visual analytics loaded into configuration matrix." });
+    }
+  }, []);
+
+  const executePipelineStream = async () => {
+    if (!prompt.trim()) return;
+    
+    setIsCompiling(true);
+    setOutputStream("");
+    
+    try {
+      const response = await fetch("/api/captions/generate-platform-subtype", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          platform: selectedPlatform,
+          subtype: selectedSubtype,
+          prompt,
+          tonalTrack
+        })
+      });
+
+      if (!response.body) throw new Error("Readable validation buffer streaming failed to mount.");
+      
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let finished = false;
+
+      while (!finished) {
+        const { value, done } = await reader.read();
+        finished = done;
+        const chunkText = decoder.decode(value, { stream: !done });
+        
+        // Parse demarcated event stream lines
+        const lines = chunkText.split("\n");
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const rawData = line.slice(6).trim();
+            if (rawData === "[DONE]") break;
+            try {
+              const parsed = JSON.parse(rawData);
+              if (parsed.text) setOutputStream((prev) => prev + parsed.text);
+            } catch (e) {
+              // Handle mid-chunk fragment anomalies gracefully
+            }
+          }
+        }
+      }
+    } catch (err) {
+      toast({ variant: "destructive", title: "Compilation Error", description: "Streaming link lost during prompt parsing pipeline." });
+    } finally {
+      setIsCompiling(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (!outputStream) return;
+    navigator.clipboard.writeText(outputStream);
+    setHasCopied(true);
+    setTimeout(() => setHasCopied(false), 2000);
+    toast({ title: "Payload Captured", description: "Text sequence written to clipboard buffer storage." });
+  };
+
+  return (
+    <StudioLayout 
+      title="Platform Content Subtype Intelligence" 
+      description="Orchestrate algorithmic visual copy built explicitly for targeted channel execution vectors."
+    >
+      {/* LEFT INPUT CONFIGURATION CONTROL DOCK FRAME */}
+      <div className="xl:col-span-5 border-r border-border/40 bg-card/5 flex flex-col h-full overflow-hidden shrink-0">
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
+          
+          {/* Platform Level 1 Selection */}
+          <div className="space-y-2.5">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-2">
+              <Radio className="w-3.5 h-3.5 text-primary" /> Target Pipeline Platform
+            </label>
+            <div className="grid grid-cols-4 gap-1.5 bg-muted/40 p-1 rounded-xl border border-border/30">
+              {(Object.keys(SUBTYPE_MATRIX) as PlatformType[]).map((plat) => (
+                <button
+                  key={plat}
+                  type="button"
+                  onClick={() => setSelectedPlatform(plat)}
+                  className={`text-xs font-medium py-2 rounded-lg transition-all border ${
+                    selectedPlatform === plat 
+                      ? "bg-background border-border/60 text-foreground shadow-xs" 
+                      : "border-transparent text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {plat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Platform Level 2 Selection: Dynamic Context Subtypes Option Blocks */}
+          <div className="space-y-2.5">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-primary font-bold flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5" /> Content Architecture Subtype
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {SUBTYPE_MATRIX[selectedPlatform].map((sub) => (
+                <button
+                  key={sub}
+                  type="button"
+                  onClick={() => setSelectedSubtype(sub)}
+                  className={`text-xs p-3 rounded-xl border text-left flex flex-col justify-between transition-all h-16 ${
+                    selectedSubtype === sub
+                      ? "bg-primary/5 border-primary text-foreground shadow-[0_0_12px_rgba(124,58,237,0.15)]"
+                      : "bg-background/40 border-border/60 text-muted-foreground hover:border-border hover:text-foreground"
+                  }`}
+                >
+                  <span className="font-semibold text-foreground text-xs">{sub}</span>
+                  <span className="text-[9px] font-mono text-muted-foreground/70 uppercase">PROMPT STRATEGY ACTIVE</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Master Structural Prompt Area */}
+          <div className="space-y-2">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Core Prompt Context
+            </label>
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="w-full h-32 bg-background/50 border border-border/60 focus:border-primary rounded-xl p-3 text-sm text-foreground focus:outline-hidden transition-colors resize-none placeholder:text-muted-foreground/40 leading-relaxed font-sans"
+              placeholder="State structural visual components or reference data tokens generated via Scene Decoder..."
+            />
+          </div>
+
+          {/* Narrative Tone Filter Selection */}
+          <div className="space-y-2">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Tonal Profiling Track
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {["Curiosity Loop", "Cinematic Focus", "Retention Heavy", "SEO Optimized"].map((tone) => (
+                <button
+                  key={tone}
+                  type="button"
+                  onClick={() => setTonalTrack(tone)}
+                  className={`text-xs py-2 px-3 rounded-lg border font-medium text-center transition-all ${
+                    tonalTrack === tone
+                      ? "bg-foreground text-background border-foreground font-semibold"
+                      : "bg-background/30 border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
+                  }`}
+                >
+                  {tone}
+                </button>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Execution Block Footer Panel Dock */}
+        <div className="p-4 border-t border-border/40 bg-background/50 shrink-0">
+          <Button
+            onClick={executePipelineStream}
+            disabled={isCompiling || !prompt.trim()}
+            className="w-full h-11 text-xs font-mono font-bold tracking-widest uppercase gap-2"
+          >
+            {isCompiling ? (
+              <RefreshCw className="w-4 h-4 animate-spin" />
+            ) : (
+              <Sparkles className="w-4 h-4 fill-current" />
+            )}
+            COMPILE INTELLIGENT METADATA
+          </Button>
+        </div>
+      </div>
+
+      {/* RIGHT COMPONENT VIEWPORT: LIVE STREAM MONITOR INTERFACE */}
+      <div className="xl:col-span-7 bg-black/10 dark:bg-neutral-950/30 p-6 flex flex-col h-full overflow-hidden">
+        <div className="flex items-center justify-between border-b border-border/30 pb-3 mb-4 shrink-0">
+          <span className="text-xs font-mono tracking-wider text-muted-foreground uppercase flex items-center gap-1.5">
+            <span className={`h-1.5 w-1.5 rounded-full ${isCompiling ? "bg-amber-400 animate-ping" : "bg-emerald-400"}`} />
+            Live Compilation Stream Monitor
+          </span>
+          {outputStream && (
+            <Button variant="ghost" size="sm" onClick={copyToClipboard} className="h-8 gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground">
+              {hasCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              COPY MATRIX
+            </Button>
+          )}
+        </div>
+
+        <div className="flex-1 bg-card/20 border border-border/40 rounded-xl p-5 font-sans overflow-y-auto relative backdrop-blur-xs">
+          {outputStream ? (
+            <div className="whitespace-pre-wrap text-sm text-foreground leading-relaxed selection:bg-primary/40">
+              {outputStream}
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 font-mono text-xs text-muted-foreground/50">
+              <span>[AWAITING PIPELINE ORCHESTRATION EXECUTION]</span>
+              <p className="text-[11px] font-sans text-muted-foreground/40 max-w-xs mt-1.5">
+                Configure your target context variables on the left panel control surface and execute compilation.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </StudioLayout>
+  );
+}
+4. New Workspace Feature Creation: Scene Decoder (src/pages/SceneDecoder.tsx)
+Create this core file at src/pages/SceneDecoder.tsx. This file enables image data processing, updates state metrics dynamically, and routes extracted image context to other app features using session memory.
+
+TypeScript
+import { useState, ChangeEvent } from "react";
+import { SceneDecoderLayout } from "@/components/layout/WorkspaceLayouts";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+import { 
+  UploadCloud, Eye, RefreshCw, Layers, Compass, 
+  Sparkles, Smile, FileText, ArrowUpRight, Copy, Check 
+} from "lucide-react";
+
+interface DecoderTelemetryPayload {
+  sceneDescription: string;
+  cinematicBreakdown: string;
+  moodAnalysis: string;
+  compositionAnalysis: string;
+  lightingAnalysis: string;
+  creatorReadyPrompt: string;
+  emotionalTone: string;
+  captionSuggestions: string[];
+}
+
+export default function SceneDecoder() {
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
+
+  // Media Stream Handlers
+  const [base64Data, setBase64Data] = useState<string | null>(null);
+  const [mimeType, setMimeType] = useState("image/jpeg");
+  const [isDecoding, setIsDecoding] = useState(false);
+  const [copiedField, setCopiedField] = useState<string | null>(null);
+
+  // Structural Telemetry Response Storage Object
+  const [telemetry, setTelemetry] = useState<DecoderTelemetryPayload | null>(null);
+
+  const processFileBuffer = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setMimeType(file.type);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        // Extract raw image string payload 
+        const base64Str = reader.result.split(",")[1];
+        setBase64Data(base64Str);
+        setTelemetry(null); // Wipe outdated diagnostic structures
+        toast({ title: "Asset Staged", description: "Image verified and loaded into active decoder stream memory." });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const executeDecodeAnalysis = async () => {
+    if (!base64Data) return;
+    setIsDecoding(true);
+
+    try {
+      const response = await fetch("/api/analyze/scene-decoder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageBase64: base64Data, mimeType })
+      });
+
+      if (!response.ok) throw new Error("Telemetry analysis transmission failure.");
+      
+      const report: DecoderTelemetryPayload = await response.json();
+      setTelemetry(report);
+      toast({ title: "Scene Analysis Synthesized", description: "Cinematic structural metrics successfully unboxed." });
+    } catch (err) {
+      toast({ variant: "destructive", title: "Diagnostic Failure", description: "AI image interpreter pipeline aborted due to payload loss." });
+    } finally {
+      setIsDecoding(false);
+    }
+  };
+
+  const stageForWorkflow = () => {
+    if (!telemetry) return;
+    // Inject metadata variables directly into session persistence memory layout
+    sessionStorage.setItem("creatorcore:staged_prompt", telemetry.creatorReadyPrompt);
+    toast({ title: "Handoff Locked", description: "Visual parameters copied to text creation workspace workflow." });
+    setLocation("/create");
+  };
+
+  const copyStringField = (fieldKey: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedField(fieldKey);
+    setTimeout(() => setCopiedField(null), 1500);
+  };
+
+  return (
+    <SceneDecoderLayout title="AI Cinematic Visual Interpreter" statusText={isDecoding ? "DECODING BLOCK" : "MONITOR READY"}>
+      
+      {/* LEFT COMPONENT PANE: ASSET LOADING PANEL & CANVAS FRAME (5-COLUMNS) */}
+      <div className="xl:col-span-5 flex flex-col gap-6 h-full overflow-y-auto pr-2">
+        <Card className="bg-card/20 border-border/40 backdrop-blur-md">
+          <CardContent className="p-5 space-y-4">
+            <div>
+              <h2 className="text-sm font-semibold tracking-tight text-foreground">Media Core Processing</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">Stage raw video source frame to perform deep visual parameters extraction.</p>
+            </div>
+
+            {/* Interactive Upload Canvas Frame Track */}
+            <div className="relative aspect-video rounded-xl border-2 border-dashed border-border/60 hover:border-cyan-500/40 bg-background/50 flex flex-col items-center justify-center overflow-hidden transition-all group p-2">
+              {base64Data ? (
+                <>
+                  <img 
+                    src={`data:${mimeType};base64,${base64Data}`} 
+                    alt="Active decoding target" 
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-200">
+                    <label className="cursor-pointer bg-background border border-border/80 px-4 py-2 rounded-lg text-xs font-mono text-foreground font-semibold">
+                      REPLACE SOURCE ASSET
+                      <input type="file" accept="image/*" onChange={processFileBuffer} className="hidden" />
+                    </label>
+                  </div>
+                </>
+              ) : (
+                <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full py-10">
+                  <div className="h-10 w-10 rounded-xl bg-muted/60 border border-border/40 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <UploadCloud className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <span className="text-xs font-medium mt-3 text-foreground tracking-tight">Ingest Production Source Frame</span>
+                  <span className="text-[10px] font-mono text-muted-foreground/60 mt-1 uppercase">JPEG, PNG, WEBP UP TO 12MB</span>
+                  <input type="file" accept="image/*" onChange={processFileBuffer} className="hidden" />
+                </label>
+              )}
+            </div>
+
+            <Button
+              onClick={executeDecodeAnalysis}
+              disabled={isDecoding || !base64Data}
+              className="w-full h-11 font-mono text-xs font-bold tracking-widest uppercase gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white"
+            >
+              {isDecoding ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Eye className="w-4 h-4" />}
+              RUN CINEMATIC SCENE DECODE
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Action Handoff Routing Card */}
+        {telemetry && (
+          <Card className="bg-gradient-to-br from-cyan-950/20 to-background border-cyan-500/20 shadow-lg animate-fade-in">
+            <CardContent className="p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-400 fill-current" />
+                <h4 className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold">Ecosystem Workflow Engine</h4>
+              </div>
+              <p className="text-xs text-muted-foreground leading-normal">
+                Visual prompts match target structures accurately. Push telemetry metrics into the platform content generation views instantly.
+              </p>
+              <Button onClick={stageForWorkflow} className="w-full h-10 gap-1.5 text-xs font-mono font-bold tracking-wide uppercase">
+                FORWARD TO STUDIO WORKSPACE <ArrowUpRight className="w-4 h-4" />
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      {/* RIGHT COMPONENT PANE: METRICS TELEMETRY REPORT STREAM PANELS (7-COLUMNS) */}
+      <div className="xl:col-span-7 flex flex-col h-full overflow-hidden">
+        <div className="flex-1 bg-card/10 border border-border/40 rounded-xl p-5 md:p-6 overflow-y-auto space-y-6 relative backdrop-blur-md">
+          {telemetry ? (
+            <div className="space-y-6 animate-fade-in">
+              
+              {/* Parameter Row 1: Direct Core Prompts */}
+              <div className="bg-background/40 border border-border/30 rounded-xl p-4 space-y-2 relative group">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-cyan-400 font-bold flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5" /> Creator-Ready Target Prompt
+                  </span>
+                  <Button 
+                    variant="ghost" size="icon" className="h-7 w-7 opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={() => copyStringField("prompt", telemetry.creatorReadyPrompt)}
+                  >
+                    {copiedField === "prompt" ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  </Button>
+                </div>
+                <p className="text-sm font-medium text-foreground bg-black/30 p-3 rounded-lg font-mono border border-border/20 select-all leading-normal">
+                  {telemetry.creatorReadyPrompt}
+                </p>
+              </div>
+
+              {/* Parameter Row 2: Grid Splits */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-background/20 border border-border/30 rounded-xl p-4 space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5" /> Composition Architecture
+                  </span>
+                  <p className="text-xs text-foreground leading-relaxed">{telemetry.compositionAnalysis}</p>
+                </div>
+                <div className="bg-background/20 border border-border/30 rounded-xl p-4 space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+                    <Compass className="w-3.5 h-3.5" /> Lighting Vectors
+                  </span>
+                  <p className="text-xs text-foreground leading-relaxed">{telemetry.lightingAnalysis}</p>
+                </div>
+              </div>
+
+              {/* Parameter Row 3: Aesthetic/Atmospheric Breakdowns */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-background/20 border border-border/30 rounded-xl p-4 space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+                    <Eye className="w-3.5 h-3.5" /> Scenic Narrative Breakdown
+                  </span>
+                  <p className="text-xs text-foreground leading-relaxed">{telemetry.cinematicBreakdown}</p>
+                </div>
+                <div className="bg-background/20 border border-border/30 rounded-xl p-4 space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+                    <Smile className="w-3.5 h-3.5" /> Emotional Grading & Mood
+                  </span>
+                  <p className="text-xs text-foreground leading-relaxed">
+                    <span className="text-cyan-400 font-mono font-semibold uppercase block text-[10px] mb-1">{telemetry.emotionalTone}</span>
+                    {telemetry.moodAnalysis}
+                  </p>
+                </div>
+              </div>
+
+              {/* Parameter Row 4: Direct Suggested Marketing Content Hooks */}
+              <div className="bg-background/20 border border-border/30 rounded-xl p-4 space-y-3">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+                  <FileText className="w-3.5 h-3.5" /> Derived Channel Caption Suggestion Blocks
+                </span>
+                <div className="space-y-2">
+                  {telemetry.captionSuggestions.map((caption, idx) => (
+                    <div key={idx} className="bg-black/20 p-3 rounded-lg text-xs text-foreground border border-border/20 flex justify-between items-center group/item">
+                      <span className="pr-4 leading-normal">{caption}</span>
+                      <Button 
+                        variant="ghost" size="icon" className="h-6 w-6 shrink-0 opacity-0 group-hover/item:opacity-100 transition-opacity"
+                        onClick={() => copyStringField(`cap-${idx}`, caption)}
+                      >
+                        {copiedField === `cap-${idx}` ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 font-mono text-xs text-muted-foreground/40">
+              <Eye className="w-8 h-8 mb-3 text-muted-foreground/20" />
+              <span>[AWAITING ASSET UPLOAD DEPLOYMENT RAW BUFFER]</span>
+              <p className="text-[11px] font-sans text-muted-foreground/30 max-w-sm mt-1 leading-normal">
+                Once input data is uploaded, the machine telemetry parser unlocks complex lighting vectors and stable prompt compositions here.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+    </SceneDecoderLayout>
+  );
+}
+Verification and System Stability Deployment Controls
+To finalize this pipeline patch inside your local Replit workspace environment:
+
+Initialize Backend Scaffolding: Open your express engine application router framework (typically artifacts/api-server/src/app.ts) and load the router endpoint reference: app.use(platformIntelligenceRouter); alongside your existing caption and analyze endpoints.
+
+Boot verification: Launch the local sandbox execution node. Navigate into the newly engineered workspace view (/scene-decoder), upload a graphic design reference or live gameplay frame, track data generation parsing parameters, and push the extracted matrix tokens directly forward into your upgraded platform-aware context engine views.)

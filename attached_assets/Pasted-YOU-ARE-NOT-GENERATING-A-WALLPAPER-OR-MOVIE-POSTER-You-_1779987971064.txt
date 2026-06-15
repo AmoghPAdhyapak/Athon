@@ -1,0 +1,120 @@
+YOU ARE NOT GENERATING A WALLPAPER OR MOVIE POSTER.
+
+You are generating a HIGH CTR YouTube gaming thumbnail optimized for clicks, emotional impact, and mobile visibility.
+
+THUMBNAIL GOALS:
+
+* Maximize click-through-rate (CTR)
+* Strong emotional impact
+* High readability on mobile
+* Clear visual storytelling
+* Cinematic but not cluttered
+* Fast visual understanding in under 1 second
+
+THUMBNAIL COMPOSITION RULES:
+
+* Main character must dominate the frame (45-60% of image)
+* Character face must be clearly visible
+* Strong facial emotion required
+* Add cinematic depth:
+
+  * foreground
+  * midground
+  * background
+* Use strong subject-background separation
+* Use dramatic lighting and contrast
+* Avoid empty dead space
+* Avoid flat poster-like symmetry
+* Add action storytelling elements
+* Ensure text-safe zones remain visible
+* Thumbnail should feel intense and dangerous
+
+VISUAL STORYTELLING RULES:
+
+* Add signs of combat and chaos
+* Include enemies, danger, or destruction
+* Use motion blur where needed
+* Add sparks, smoke, fire particles, aura energy, explosions, or environmental effects
+* Make the scene feel alive and in motion
+* Show tension and survival pressure
+
+CTR PSYCHOLOGY RULES:
+
+* Create curiosity
+* Create emotional tension
+* Make viewers ask:
+  “WHAT HAPPENED HERE?”
+* Focus on impossible or high-stakes moments
+* Prioritize emotion over beauty
+* Thumbnail should instantly communicate:
+  dominance, danger, revenge, survival, rage, or clutch moment
+
+TEXT RULES:
+
+* Text must be BIG and readable on mobile
+* Use short aggressive wording
+* Avoid generic text like:
+  “EPIC GAMEPLAY”
+  “BEST MATCH”
+* Prefer emotional/high-CTR wording like:
+  “1 HP DEMON”
+  “THEY PUSHED THE WRONG PLAYER”
+  “THIS SHOULD BE IMPOSSIBLE”
+  “ONE SHOT. FOUR BODIES.”
+
+LIGHTING RULES:
+
+* Use cinematic high-contrast lighting
+* Add glow around main subject
+* Prioritize face and weapon visibility
+* Use strong rim lighting
+* Use fire, neon, or cinematic highlights
+* Maintain dark dramatic atmosphere
+
+SCENE ANALYSIS PRIORITY:
+Analyze:
+
+* main subject
+* weapon/action
+* emotional focus
+* strongest visual object
+* environment intensity
+* possible storytelling opportunities
+
+Then optimize the thumbnail around those elements.
+
+STYLE REQUIREMENTS:
+
+* Hyper-detailed
+* Esports cinematic quality
+* High-energy composition
+* Gaming thumbnail style
+* Modern YouTube creator aesthetic
+
+IMPORTANT:
+DO NOT generate:
+
+* simple posters
+* wallpaper art
+* empty cinematic scenes
+* static standing characters
+* low emotion characters
+* over-clean minimal scenes
+
+The thumbnail MUST feel:
+
+* viral
+* emotional
+* dangerous
+* high-energy
+* cinematic
+* clickable
+
+FINAL OUTPUT PRIORITY:
+
+1. CTR optimization
+2. Emotional intensity
+3. Readability
+4. Storytelling
+5. Cinematic visuals
+6. Style polish

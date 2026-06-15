@@ -1,0 +1,113 @@
+IMPORTANT: FIX THE SPLASH SCREEN LOADING FLOW.
+
+Current issue:
+
+The app shows:
+
+* a black screen for ~11 seconds
+* then the logo splash appears for only ~1 second
+* then the app opens
+
+This feels broken and unprofessional.
+
+==================================================
+REQUIRED BEHAVIOR
+=================
+
+The cinematic splash/logo screen must appear IMMEDIATELY when the app starts.
+
+The splash screen should remain visible DURING the ENTIRE loading process.
+
+The user should NEVER see:
+
+* blank black screen
+* empty loading state
+* white flash
+* delayed splash appearance
+
+==================================================
+CORRECT FLOW
+============
+
+User opens app
+↓
+Splash/logo screen appears instantly
+↓
+Background systems load:
+
+* Clerk auth
+* session restore
+* React app initialization
+* route mounting
+* assets/fonts
+  ↓
+  ONLY after everything is fully ready:
+  → fade smoothly into the app
+
+==================================================
+IMPORTANT
+=========
+
+The splash duration should NOT be:
+fixed timer based.
+
+Instead:
+the splash should persist UNTIL:
+
+* app initialization completed
+* auth state resolved
+* routes mounted
+* UI ready
+
+==================================================
+TECHNICAL REQUIREMENTS
+======================
+
+Fix:
+
+* initial blank screen
+* delayed splash mounting
+* loading race conditions
+* Clerk loading delay visibility
+* React hydration blank state
+
+The splash component must render:
+BEFORE the rest of the application initialization.
+
+==================================================
+VISUAL REQUIREMENTS
+===================
+
+Keep:
+
+* cinematic logo
+* glow animation
+* premium atmosphere
+* smooth fade transitions
+
+The loading should feel:
+intentional and cinematic.
+
+==================================================
+IMPORTANT UX GOAL
+=================
+
+Users should feel:
+the app is loading beautifully.
+
+NOT:
+that the app froze on a black screen.
+
+==================================================
+FINAL GOAL
+==========
+
+The splash screen should behave like:
+
+* CapCut
+* Spotify
+* Discord
+* modern creator applications
+
+Professional startup sequence:
+logo visible during the FULL loading process.

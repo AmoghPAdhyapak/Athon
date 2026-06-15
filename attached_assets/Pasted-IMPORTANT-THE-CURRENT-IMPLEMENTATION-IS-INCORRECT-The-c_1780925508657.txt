@@ -1,0 +1,194 @@
+IMPORTANT — THE CURRENT IMPLEMENTATION IS INCORRECT
+
+The current system only performs responsive scaling.
+
+That is NOT the requested feature.
+
+Right now:
+the same desktop creator interface is merely shrinking on smaller screens.
+
+This is NOT:
+true Desktop/Mobile adaptive workspace architecture.
+
+===========================================================
+WHAT IS REQUIRED
+================
+
+I want:
+TWO DIFFERENT UI BEHAVIORS
+inside the SAME AETHON application.
+
+===========================================================
+DESKTOP MODE
+============
+
+Desktop mode should preserve:
+
+* cinematic creator workstation feel
+* permanent sidebar
+* multi-panel workspace layouts
+* widescreen creator environment
+* hover interactions
+* dense creator controls
+* multi-column browsing systems
+* professional creator software behavior
+
+Desktop should feel like:
+
+* Canva desktop
+* Adobe creator software
+* cinematic creator workstation
+
+===========================================================
+MOBILE MODE
+===========
+
+Mobile mode should transform the application into:
+
+* app-style creator experience
+* touch-first interaction system
+* bottom navigation
+* drawer/sidebar menu
+* stacked workflow cards
+* swipe-friendly layouts
+* simplified panel rendering
+* compact creator tools
+* fullscreen modals/sheets where appropriate
+* single-column creator workflows
+
+The MOBILE interface structure itself must change.
+
+NOT just resize.
+
+===========================================================
+CRITICAL ISSUE
+==============
+
+The current implementation only:
+
+* changes viewport scaling
+* adjusts responsiveness
+* shrinks desktop layouts
+
+BUT:
+the desktop creator workstation structure still remains identical.
+
+That means:
+the switch is visually changing size,
+NOT changing application behavior.
+
+===========================================================
+REQUIRED IMPLEMENTATION
+=======================
+
+Desktop/Mobile adaptation must dynamically control:
+
+* layout rendering
+* navigation behavior
+* sidebar behavior
+* workspace composition
+* panel structure
+* workflow presentation
+* interaction density
+* preview positioning
+* browsing behavior
+
+===========================================================
+AETHON WORKSPACE REQUIREMENTS
+=============================
+
+Templates:
+
+Desktop:
+
+* cinematic browsing marketplace
+* wide discovery grids
+* hover preview interactions
+
+Mobile:
+
+* stacked discovery feed
+* swipeable template rows
+* touch-first browsing
+
+===========================================================
+
+Create Workspace:
+
+Desktop:
+
+* split editing workspace
+* left controls
+* right preview
+* workstation feel
+
+Mobile:
+
+* stacked workflow
+* fullscreen preview
+* collapsible controls
+* touch-first generation flow
+
+===========================================================
+
+Analyze Workspace:
+
+Desktop:
+
+* diagnostics workstation
+* split analysis panels
+* widescreen inspection flow
+
+Mobile:
+
+* stacked analysis cards
+* collapsible sections
+* mobile-safe diagnostics layout
+
+===========================================================
+IMPORTANT
+=========
+
+DO NOT:
+
+* rewrite backend
+* alter APIs
+* break auth
+* destroy current routing
+* remove desktop UI
+* duplicate the entire application
+
+ONLY:
+implement REAL adaptive dual-layout architecture.
+
+===========================================================
+IMPORTANT DESIGN REQUIREMENTS
+=============================
+
+Both desktop and mobile must maintain:
+
+* same AETHON identity
+* same cinematic visual language
+* same branding
+* same premium creator feel
+
+BUT:
+their STRUCTURE and BEHAVIOR must adapt independently.
+
+===========================================================
+FINAL GOAL
+==========
+
+AETHON should feel like:
+
+Desktop:
+
+* professional creator workstation
+
+Mobile:
+
+* premium native creator app
+
+NOT:
+
+* desktop website squeezed into a phone screen

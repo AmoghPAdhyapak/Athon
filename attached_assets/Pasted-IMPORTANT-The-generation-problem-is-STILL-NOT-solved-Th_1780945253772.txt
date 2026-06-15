@@ -1,0 +1,112 @@
+IMPORTANT: The generation problem is STILL NOT solved.
+
+The previous diagnosis identified:
+401 Unauthorized errors caused by Clerk authentication failing inside the Replit preview iframe.
+
+However:
+the actual generation workflow still remains unusable for real browser usage.
+
+==================================================
+CURRENT VERIFIED SITUATION
+==========================
+
+Frontend UI works:
+
+* Platform Intelligence works
+* Instagram subtypes work
+* Scene Decoder exists
+* Create Template UI works
+* cinematic routing works
+
+BUT:
+Generate Magic still fails in real usage.
+
+==================================================
+IMPORTANT
+=========
+
+I do NOT want assumptions anymore.
+
+I want:
+REAL CODE-LEVEL DEBUGGING.
+
+Please inspect:
+
+* the actual auth implementation
+* request flow
+* cookies
+* Clerk session handling
+* fetch configuration
+* API middleware
+* iframe behavior
+* deployment behavior
+
+==================================================
+I NEED THE ACTUAL IMPLEMENTATION/CODE
+=====================================
+
+Please provide:
+
+* the exact failing code section
+* the exact reason for failure
+* the exact fix required
+* the exact file(s) needing changes
+
+If necessary,
+ask me for:
+
+* specific files
+* auth code
+* Clerk setup
+* middleware code
+* fetch wrappers
+* API route code
+* deployment configuration
+
+==================================================
+IMPORTANT DEBUGGING TASKS
+=========================
+
+Please trace the FULL generation request pipeline:
+
+1. Frontend Generate Magic button
+2. fetch / React Query call
+3. request headers
+4. cookies/session handling
+5. Clerk auth flow
+6. middleware auth verification
+7. captions endpoint
+8. Gemini generation request
+9. response handling
+
+==================================================
+IMPORTANT
+=========
+
+Do NOT continue:
+
+* UI expansion
+* feature additions
+* design changes
+
+Until:
+the core generation workflow is stable.
+
+==================================================
+GOAL
+====
+
+I want:
+a REAL WORKING generation flow.
+
+Not:
+
+* assumptions
+* theory
+* partial diagnosis
+* speculative fixes
+
+Please inspect the actual implementation/code and identify the precise failure point.
+
+If needed,
+tell me EXACTLY which code/API files you need me to paste next.

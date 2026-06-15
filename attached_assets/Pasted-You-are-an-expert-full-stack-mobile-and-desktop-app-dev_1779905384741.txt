@@ -1,0 +1,116 @@
+You are an expert full-stack mobile and desktop app developer.
+
+Your task is to build a professional AI-powered Caption Generator application that works smoothly on BOTH:
+1. Android phones
+2. Desktop systems (Windows/Web)
+
+Tech Stack Requirements:
+- Frontend: Flutter
+- AI Model: Google Gemini API
+- State Management: Provider or Riverpod
+- Local Storage: SharedPreferences
+- Ads: Google AdMob (easy to enable later)
+- Responsive UI for mobile + desktop layouts
+- Dark mode enabled by default
+
+Project Goal:
+Build a fast, lightweight, modern AI Caption Generator focused on:
+- Gamers
+- Instagram users
+- Reel creators
+- YouTubers
+- Anime editors
+
+Core Features:
+1. AI Caption Generation
+2. YouTube Title Generation
+3. Hashtag Generation
+4. Bio Generator
+5. Copy-to-clipboard button
+6. Share button
+7. Save favorite captions locally
+8. Category-based generation
+
+Categories:
+- Gaming
+- Anime
+- Attitude
+- Motivation
+- Sad
+- Funny
+- Romantic
+- Free Fire
+- Cinematic
+- YouTube
+
+User Flow:
+1. User selects category
+2. User enters topic
+3. App sends prompt to Gemini API
+4. AI returns:
+   - 10 captions
+   - 5 titles
+   - 15 hashtags
+5. User can copy/share/save results
+
+UI Requirements:
+- Modern cinematic dark UI
+- Smooth animations
+- Responsive design for phone + desktop
+- Clean typography
+- Gradient buttons
+- Fast loading
+- Scrollable results section
+- Bottom navigation bar on phone
+- Sidebar navigation on desktop/web
+
+Important:
+- App must adapt automatically to different screen sizes
+- No hardcoded mobile-only layouts
+- Use LayoutBuilder/MediaQuery/responsive widgets properly
+- Keep code modular and beginner-friendly
+- Separate files properly:
+  - screens
+  - widgets
+  - services
+  - models
+  - utils
+
+Gemini API Requirements:
+- Use Gemini API properly with clean async handling
+- Store API key securely using environment variables
+- Add loading animation during generation
+- Handle API errors gracefully
+
+Extra Features:
+- “Generate More” button
+- Recent history section
+- Offline saved captions
+- Character counter
+- Stylish loading screen
+
+Performance Requirements:
+- Lightweight
+- Fast startup
+- Smooth scrolling
+- Optimized API calls
+- Minimal memory usage
+
+Desktop Compatibility:
+- Works properly on:
+  - Windows
+  - Web browser
+- Responsive resizing support
+- Keyboard-friendly controls
+
+Output Requirement:
+Generate:
+1. Full Flutter project structure
+2. Main Dart files
+3. Gemini API integration code
+4. Responsive UI code
+5. Step-by-step setup instructions
+6. Play Store build instructions
+7. Windows/Web build instructions
+
+The final app should look modern, polished, and production-ready while remaining simple enough for a beginner to understand and modify.

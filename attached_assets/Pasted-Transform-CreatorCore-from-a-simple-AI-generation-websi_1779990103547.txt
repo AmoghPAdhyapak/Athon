@@ -1,0 +1,277 @@
+Transform CreatorCore from a simple AI generation website into a complete cross-platform creator application ecosystem that feels like a real professional app on both mobile and desktop.
+
+IMPORTANT:
+The app should NOT feel like a basic website with a form and generate button.
+
+The app must feel like:
+
+* a creator platform
+* a modern AI creative workspace
+* a cinematic creator ecosystem
+* a professional installable app
+
+==================================================
+APP EXPERIENCE GOAL
+===================
+
+The user experience should feel similar to:
+
+* Canva
+* Pinterest
+* CapCut
+* Midjourney
+* modern creator tools
+
+The app should feel:
+
+* immersive
+* smooth
+* modern
+* cinematic
+* premium
+* app-like
+
+NOT:
+
+* static website
+* developer dashboard
+* raw AI tool
+
+==================================================
+CROSS PLATFORM REQUIREMENTS
+===========================
+
+The app must work professionally on:
+
+* Android phones
+* iPhones
+* Windows laptops
+* Mac
+* Web browsers
+
+Use:
+
+* responsive layouts
+* app-style navigation
+* installable PWA support
+* smooth fullscreen experience
+
+The app should behave like a real application on both phone and desktop.
+
+==================================================
+APP FLOW
+========
+
+APP OPEN FLOW:
+
+1. Cinematic splash screen
+
+* animated CreatorCore logo
+* smooth loading animation
+* dark cinematic intro
+* short tagline:
+  “Create Thumbnails That Click.”
+
+2. Authentication screen
+   Support:
+
+* Sign In
+* Login
+* Google Login
+* Guest mode (optional)
+
+3. First-time onboarding
+   Show:
+
+* example thumbnails
+* trending styles
+* AI capabilities
+* short tutorial slides
+
+4. Home dashboard
+   User enters the main creator workspace.
+
+==================================================
+HOME DASHBOARD
+==============
+
+The dashboard should feel premium and creator-focused.
+
+Include:
+
+* Trending thumbnails
+* Popular styles
+* Recent projects
+* Community inspiration
+* Generate button
+* Templates section
+
+UI should feel:
+
+* modern
+* cinematic
+* smooth
+* animated
+
+==================================================
+GENERATION WORKSPACE
+====================
+
+Users should be able to:
+
+* upload image
+* choose platform
+* choose mood
+* choose style
+* write situation
+* add extra prompts
+
+Then generate:
+
+* thumbnails
+* hooks
+* captions
+* titles
+* hashtags
+
+The workspace should feel like:
+
+* a creative studio
+* not a simple form
+
+==================================================
+USER PROFILE SYSTEM
+===================
+
+Every user should have:
+
+* username
+* profile image
+* saved creations
+* favorites
+* public creations
+* private creations
+
+==================================================
+PUBLIC / PRIVATE SYSTEM
+=======================
+
+Users can choose:
+
+1. Public
+
+* visible in community feed
+* shareable
+* discoverable
+
+2. Private
+
+* visible only to creator
+* stored securely
+
+==================================================
+COMMUNITY FEED
+==============
+
+Create a modern creator feed showing:
+
+* trending thumbnails
+* top creators
+* viral styles
+* recent public creations
+
+Users should feel inspired when entering the app.
+
+==================================================
+PROJECT WORKSPACE
+=================
+
+Users should be able to:
+
+* reopen projects
+* regenerate thumbnails
+* compare versions
+* edit prompts
+* save versions
+
+==================================================
+UI / UX STYLE
+=============
+
+Style:
+
+* dark cinematic UI
+* glassmorphism
+* smooth transitions
+* animated cards
+* modern gradients
+* premium esports feel
+
+Animations:
+
+* page transitions
+* loading states
+* hover effects
+* smooth scrolling
+* cinematic intro animations
+
+==================================================
+MOBILE EXPERIENCE
+=================
+
+The app must feel native on phones.
+
+Requirements:
+
+* bottom navigation
+* touch-friendly UI
+* responsive layouts
+* mobile safe zones
+* smooth gestures
+
+==================================================
+DESKTOP EXPERIENCE
+==================
+
+Desktop should feel like:
+
+* professional creative software
+* creator dashboard
+
+Use:
+
+* sidebar navigation
+* resizable layouts
+* cinematic workspace panels
+
+==================================================
+IMPORTANT PRODUCT GOAL
+======================
+
+The app should emotionally feel like:
+“This is MY creator workspace.”
+
+Users should feel:
+
+* ownership
+* creativity
+* identity
+* progression
+
+NOT:
+“I visited an AI website.”
+
+==================================================
+FINAL RESULT
+============
+
+CreatorCore should feel like:
+
+* a real startup product
+* a creator ecosystem
+* a cinematic AI creative platform
+* an installable creator app
+
+NOT:
+
+* a generic AI thumbnail generator website

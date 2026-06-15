@@ -1,0 +1,751 @@
+IMPORTANT: DO NOT REBUILD CREATORCORE.
+
+The current app architecture already works:
+
+* React frontend
+* Wouter routing
+* Gemini integrations
+* cinematic UI
+* sidebar navigation
+* Platform Subtype Intelligence
+* Scene Decoder integration
+
+The issue now is:
+WORKFLOW SEPARATION BUGS after the recent integration.
+
+==================================================
+CURRENT PROBLEM
+===============
+
+During the integration of:
+
+* Platform Subtype Intelligence
+* Scene Decoder
+
+the TEXT GENERATION workflow and IMAGE GENERATION workflow became mixed together accidentally.
+
+This caused:
+
+* Create Template page behaving incorrectly
+* image generation logic leaking into text generation
+* generation failures
+* wrong endpoint usage
+* incorrect component responsibility separation
+
+==================================================
+THERE ARE 2 SEPARATE SYSTEMS
+============================
+
+##################################################
+SYSTEM 1 — CREATE TEMPLATE WORKFLOW
+##################################################
+
+Purpose:
+AI creator writing studio.
+
+This system should ONLY handle:
+
+* captions
+* YouTube titles
+* hashtags
+* bios
+* platform subtype generation
+* creator text workflows
+
+Examples:
+
+* Instagram Reel captions
+* Story hooks
+* YouTube Shorts titles
+* creator bios
+* hashtag generation
+
+==================================================
+EXPECTED CREATE TEMPLATE FLOW
+=============================
+
+User selects:
+
+* category
+* platform
+* subtype
+* generation type
+
+Then:
+Gemini TEXT models generate:
+
+* captions
+* titles
+* hashtags
+* creator text
+
+This workflow should NEVER:
+
+* upload images
+* trigger image generation
+* use image payloads
+* depend on thumbnail analysis state
+
+==================================================
+SYSTEM 2 — THUMBNAIL GENERATION WORKFLOW
+========================================
+
+Purpose:
+AI cinematic thumbnail engine.
+
+This system should ONLY handle:
+
+* image upload
+* AI thumbnail generation
+* cinematic image analysis
+* Scene Decoder image analysis
+* Gemini image generation
+
+==================================================
+EXPECTED THUMBNAIL FLOW
+=======================
+
+User uploads image
+→ chooses cinematic settings
+→ generates thumbnail
+→ receives AI-generated image
+
+This workflow SHOULD:
+
+* use image payloads
+* use Gemini image models
+* use analyze endpoints
+* use image analysis state
+
+==================================================
+CURRENT BUG
+===========
+
+The Create Template page is currently behaving like:
+the Thumbnail Generation system.
+
+Symptoms:
+
+* generation failed errors
+* wrong generation handlers
+* image-generation logic leaking into Create page
+* incorrect API usage
+* incorrect shared state
+
+==================================================
+REQUIRED GOAL
+=============
+
+Restore STRICT SEPARATION between:
+
+1. TEXT GENERATION WORKFLOW
+   and
+2. IMAGE GENERATION WORKFLOW
+
+==================================================
+PLEASE VERIFY
+=============
+
+1. Create.tsx
+
+* ensure it ONLY uses text/caption generation logic
+* ensure it ONLY calls captions endpoints
+* ensure it does NOT import image generation handlers
+* ensure it does NOT depend on image upload state
+
+==================================================
+
+2. ThumbnailGeneration.tsx / Analyze.tsx
+
+* isolate image generation logic here only
+* isolate image upload state here only
+* Scene Decoder image analysis stays here only
+
+==================================================
+
+3. API CALLS
+
+Create Template MUST call:
+
+* captions/generate
+* captions/generate-stream
+
+Thumbnail Generation MUST call:
+
+* analyze/generate-image
+* analyze/generate-thumbnail
+* Scene Decoder endpoints
+
+Ensure:
+no cross-calling between workflows.
+
+==================================================
+
+4. App.tsx routing
+
+* verify correct component mounting
+* remove route confusion
+* ensure proper isolation
+
+==================================================
+
+5. Shared hooks/state
+
+* isolate caption state
+* isolate image generation state
+* isolate handlers
+* isolate mutations
+
+==================================================
+IMPORTANT
+=========
+
+PRESERVE:
+
+* current cinematic violet/fuchsia identity
+* current sidebar structure
+* current generation UX
+* Platform Subtype Intelligence
+* Scene Decoder feature
+* current architecture
+
+DO NOT:
+
+* redesign the app
+* rebuild architecture
+* remove existing features
+* replace the cinematic identity
+
+==================================================
+NEXT STEP
+=========
+
+I already have the corrected implementation code.
+
+I will now paste:
+
+* corrected frontend code
+* corrected hooks
+* corrected API logic
+* corrected routing
+* corrected state separation
+
+Your job is:
+
+* integrate the code safely
+* place files correctly
+* preserve architecture
+* resolve conflicts carefully
+* ensure workflows remain isolated and stable
+here is the code : Architectural Root Cause & Separation Strategy
+The system breakdown stems from a classical shared context leakage. During the rapid parallel integration of the Platform Subtype Intelligence Matrix and the Scene Decoder Engine, state machines and mutation pipelines inside the generation hooks became unified under an abstract single-generation handler. Consequently, the text workbench in Create.tsx began tracking global file and image buffer states, matching conditions meant exclusively for multimodal image synthesizers, and issuing runtime queries to /api/analyze/* endpoints instead of the streaming text matrix pipeline.
+
+To enforce permanent, hard-walled architectural separation, we decouple the codebase into two entirely distinct operational layers:
+
+The Textual Synthesis Engine (src/pages/Create.tsx): Locked entirely to text/string manipulation payloads. It orchestrates state via localized arrays, controls platform-aware content drops, and targets exclusive streaming endpoints (/api/captions/*). It contains absolute zero image uploading or thumbnail generation logic.
+
+The Media Production Workspace (src/pages/Analyze.tsx or ThumbnailGeneration.tsx): Isolated exclusively for processing image buffers, coordinate arrays, multipart/form-data payloads, and deep multi-modal Scene Decoder interpretation models via the visual endpoints (/api/analyze/*).
+
+1. The Isolated Text Synthesis Layer: Corrected src/pages/Create.tsx
+This file handles the text-only layout system. All image file states, upload target elements, and image generation mutation triggers have been completely purged. It utilizes the dedicated streaming engine for platform subtype execution.
+
+TypeScript
+import { useState, useEffect } from "react";
+import { StudioLayout } from "@/components/layout/WorkspaceLayouts";
+import { Button } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Sparkles, RefreshCw, Layers, Radio, Copy, Check, FileText } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
+type PlatformType = "Instagram" | "YouTube" | "TikTok" | "Facebook";
+
+const SUBTYPE_MATRIX: Record<PlatformType, string[]> = {
+  Instagram: ["Reel", "Story", "Post", "Carousel"],
+  YouTube: ["Long Video", "Shorts", "Community Post"],
+  TikTok: ["Viral Clip", "Story Style", "Trend Hook"],
+  Facebook: ["Post", "Story", "Reel"]
+};
+
+export default function Create() {
+  const { toast } = useToast();
+  
+  // Localized Text/Platform State Contexts Only - Absolute Separation from Image State Loops
+  const [prompt, setPrompt] = useState("");
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformType>("Instagram");
+  const [selectedSubtype, setSelectedSubtype] = useState("Reel");
+  const [tonalTrack, setTonalTrack] = useState("Cinematic Focus");
+  
+  // Streaming Compilation States
+  const [outputStream, setOutputStream] = useState("");
+  const [isCompiling, setIsCompiling] = useState(false);
+  const [hasCopied, setHasCopied] = useState(false);
+
+  // Synchronize structural subtypes matching platform state transitions
+  useEffect(() => {
+    setSelectedSubtype(SUBTYPE_MATRIX[selectedPlatform][0]);
+  }, [selectedPlatform]);
+
+  // Safeguarded text-handoff capture layer from Scene Decoder cache hooks
+  useEffect(() => {
+    const cachedPrompt = sessionStorage.getItem("creatorcore:staged_prompt");
+    if (cachedPrompt) {
+      setPrompt(cachedPrompt);
+      sessionStorage.removeItem("creatorcore:staged_prompt");
+      toast({ 
+        title: "Context Injection Successful", 
+        description: "Visual analytical description mounted cleanly into text prompt matrix." 
+      });
+    }
+  }, [toast]);
+
+  const executeTextPipelineStream = async () => {
+    if (!prompt.trim()) return;
+    
+    setIsCompiling(true);
+    setOutputStream("");
+    
+    try {
+      // Direct hard-wired endpoint execution targeting ONLY the text matrix generation routers
+      const response = await fetch("/api/captions/generate-platform-subtype", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          platform: selectedPlatform,
+          subtype: selectedSubtype,
+          prompt,
+          tonalTrack
+        })
+      });
+
+      if (!response.body) throw new Error("Text response streaming layout channel failed to resolve.");
+      
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let finished = false;
+
+      while (!finished) {
+        const { value, done } = await reader.read();
+        finished = done;
+        const chunkText = decoder.decode(value, { stream: !done });
+        
+        const lines = chunkText.split("\n");
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const rawData = line.slice(6).trim();
+            if (rawData === "[DONE]") break;
+            try {
+              const parsed = JSON.parse(rawData);
+              if (parsed.text) setOutputStream((prev) => prev + parsed.text);
+            } catch (e) {
+              // Gracefully handle segmented buffer parsing anomalies
+            }
+          }
+        }
+      }
+    } catch (err) {
+      toast({ 
+        variant: "destructive", 
+        title: "Text Compilation Engine Failure", 
+        description: "Streaming transport error during script/caption compilation orchestration." 
+      });
+    } finally {
+      setIsCompiling(false);
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (!outputStream) return;
+    navigator.clipboard.writeText(outputStream);
+    setHasCopied(true);
+    setTimeout(() => setHasCopied(false), 2000);
+    toast({ title: "Buffer Staged", description: "Text output copied to system clipboard storage." });
+  };
+
+  return (
+    <StudioLayout 
+      title="AI Creator Text Synthesis Workspace" 
+      description="Deploy high-retention copy, headlines, or metadata optimized across platform subtype algorithmic patterns."
+    >
+      {/* CONTROL INTERFACE COLUMNS - 100% ISOLATED FROM IMAGE PAYLOADS */}
+      <div className="xl:col-span-5 border-r border-border/40 bg-card/10 flex flex-col h-full overflow-hidden shrink-0">
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
+          
+          {/* Platform Selector Field */}
+          <div className="space-y-2.5">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-2">
+              <Radio className="w-3.5 h-3.5 text-primary" /> Target Channels
+            </label>
+            <RadioGroup 
+              value={selectedPlatform} 
+              onValueChange={(val) => setSelectedPlatform(val as PlatformType)}
+              className="grid grid-cols-4 gap-2 p-1 bg-muted/30 border border-border/40 rounded-xl"
+            >
+              {(Object.keys(SUBTYPE_MATRIX) as PlatformType[]).map((plat) => (
+                <div key={plat} className="flex items-center justify-center">
+                  <RadioGroupItem value={plat} id={`plat-${plat}`} className="sr-only" />
+                  <Label
+                    htmlFor={`plat-${plat}`}
+                    className={`w-full text-center text-xs font-medium py-2 rounded-lg cursor-pointer transition-all border ${
+                      selectedPlatform === plat 
+                        ? "bg-background border-border/80 text-foreground shadow-xs" 
+                        : "border-transparent text-muted-foreground hover:text-foreground"
+                      }`}
+                  >
+                    {plat}
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+
+          {/* Platform Variant Subtype Blocks */}
+          <div className="space-y-2.5">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-primary font-bold flex items-center gap-2">
+              <Layers className="w-3.5 h-3.5" /> Contextual Target Subtype
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {SUBTYPE_MATRIX[selectedPlatform].map((sub) => (
+                <button
+                  key={sub}
+                  type="button"
+                  onClick={() => setSelectedSubtype(sub)}
+                  className={`text-xs p-3 rounded-xl border text-left flex flex-col justify-between transition-all h-16 ${
+                    selectedSubtype === sub
+                      ? "bg-primary/5 border-primary text-foreground shadow-[0_0_12px_rgba(124,58,237,0.12)]"
+                      : "bg-background/40 border-border/50 text-muted-foreground hover:border-border hover:text-foreground"
+                  }`}
+                >
+                  <span className="font-semibold text-foreground text-xs">{sub}</span>
+                  <span className="text-[9px] font-mono text-muted-foreground/60 uppercase">ALGO MATRIX MOUNTED</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Master Text Prompt Directives Component */}
+          <div className="space-y-2">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold flex items-center gap-1.5">
+              <FileText className="w-3.5 h-3.5" /> Structural Copy Brief
+            </label>
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="w-full h-36 bg-background/40 border border-border/50 focus:border-primary rounded-xl p-3 text-sm text-foreground focus:outline-hidden transition-colors resize-none placeholder:text-muted-foreground/40 leading-relaxed font-sans"
+              placeholder="State topic strings, hook contexts, target audience profiles, or structural directives..."
+            />
+          </div>
+
+          {/* Tonal Variant Blocks */}
+          <div className="space-y-2">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Algorithmic Tone Configuration
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              {["Curiosity Loop", "Cinematic Focus", "Retention Heavy", "SEO Optimized"].map((tone) => (
+                <button
+                  key={tone}
+                  type="button"
+                  onClick={() => setTonalTrack(tone)}
+                  className={`text-xs py-2 px-3 rounded-lg border font-medium text-center transition-all ${
+                    tonalTrack === tone
+                      ? "bg-foreground text-background border-foreground font-semibold shadow-md"
+                      : "bg-background/30 border-border/50 text-muted-foreground hover:text-foreground hover:border-border"
+                  }`}
+                >
+                  {tone}
+                </button>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Text Trigger Submission Footbar Deck */}
+        <div className="p-4 border-t border-border/40 bg-background/50 shrink-0">
+          <Button
+            onClick={executeTextPipelineStream}
+            disabled={isCompiling || !prompt.trim()}
+            className="w-full h-11 text-xs font-mono font-bold tracking-widest uppercase gap-2 bg-primary hover:bg-primary/90 text-white"
+          >
+            {isCompiling ? (
+              <RefreshCw className="w-4 h-4 animate-spin" />
+            ) : (
+              <Sparkles className="w-4 h-4 fill-current" />
+            )}
+            COMPILE SYSTEM TEXTPAYLOAD
+          </Button>
+        </div>
+      </div>
+
+      {/* RIGHT PREVIEW DOCK MONITOR VIEWPORT: ONLY TRACKS TEXT STREAM EMISSIONS */}
+      <div className="xl:col-span-7 bg-black/10 dark:bg-neutral-950/20 p-6 flex flex-col h-full overflow-hidden">
+        <div className="flex items-center justify-between border-b border-border/30 pb-3 mb-4 shrink-0">
+          <span className="text-xs font-mono tracking-wider text-muted-foreground uppercase flex items-center gap-2">
+            <span className={`h-1.5 w-1.5 rounded-full ${isCompiling ? "bg-amber-400 animate-pulse" : "bg-primary"}`} />
+            Active Text Pipeline Monitoring Terminal
+          </span>
+          {outputStream && (
+            <Button variant="ghost" size="sm" onClick={copyToClipboard} className="h-8 gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground">
+              {hasCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              COPY SYNTHESIS
+            </Button>
+          )}
+        </div>
+
+        <div className="flex-1 bg-card/20 border border-border/40 rounded-xl p-5 overflow-y-auto relative backdrop-blur-xs">
+          {outputStream ? (
+            <div className="whitespace-pre-wrap text-sm text-foreground leading-relaxed font-sans select-text selection:bg-primary/30">
+              {outputStream}
+            </div>
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 font-mono text-xs text-muted-foreground/40">
+              <span>[AWAITING SYSTEM COMPILATION GENERATION TRIGGER]</span>
+              <p className="text-[11px] font-sans text-muted-foreground/40 max-w-xs mt-2 leading-normal">
+                No image operations present inside this workflow view. Set structural copy tokens to trigger text generation.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </StudioLayout>
+  );
+}
+2. The Isolated Media Production Layer: Corrected src/pages/Analyze.tsx
+This view isolates System 2: Thumbnail Generation & Scene Decoder Analysis Workflow. All platform subtype strings or copy matrix selectors have been entirely extracted out. It handles image files via dedicated analytics pipelines.
+
+TypeScript
+import { useState, ChangeEvent } from "react";
+import { LabLayout } from "@/components/layout/WorkspaceLayouts";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
+import { UploadCloud, BarChart3, Activity, Image as ImageIcon, ShieldAlert, RefreshCw } from "lucide-react";
+
+interface GraphicAnalyticsTelemetry {
+  compositionScore: number;
+  contrastPass: boolean;
+  detectedVectors: string[];
+  recommendedAspects: string;
+}
+
+export default function Analyze() {
+  const { toast } = useToast();
+  
+  // Strict Isolation of Media and File Object Buffer States
+  const [imageFileBase64, setImageFileBase64] = useState<string | null>(null);
+  const [fileMimeType, setFileMimeType] = useState("image/jpeg");
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [telemetryReport, setTelemetryReport] = useState<GraphicAnalyticsTelemetry | null>(null);
+
+  const ingestSourceImage = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setFileMimeType(file.type);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        const structuralBase64 = reader.result.split(",")[1];
+        setImageFileBase64(structuralBase64);
+        setTelemetryReport(null); // Clear cached data objects
+        toast({ title: "Asset Pipeline Staged", description: "Image verified and cached in analytical memory." });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const dispatchImageAnalysis = async () => {
+    if (!imageFileBase64) return;
+    setIsAnalyzing(true);
+
+    try {
+      // Hardwired API targeting EXCLUSIVELY the image telemetry destination architecture
+      const response = await fetch("/api/analyze/generate-thumbnail-metrics", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          imageBase64: imageFileBase64, 
+          mimeType: fileMimeType 
+        })
+      });
+
+      if (!response.ok) throw new Error("Image analysis query request rejected by server.");
+      
+      const metrics: GraphicAnalyticsTelemetry = await response.json();
+      setTelemetryReport(metrics);
+      toast({ title: "Diagnostics Complete", description: "Cinematic thumbnail composition indices parsed successfully." });
+    } catch (err) {
+      toast({ 
+        variant: "destructive", 
+        title: "Telemetry System Failure", 
+        description: "Error occurred during pixel matrix composition processing." 
+      });
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  return (
+    <LabLayout 
+      title="Cinematic Image Diagnostics Lab" 
+      description="Run automated composition metrics parsing, brightness histogram isolation, and rendering layout telemetry layers."
+    >
+      {/* LEFT COLUMN SPLIT: RAW MEDIA MULTIPART ENTRY SYSTEM (60% WIDTH) */}
+      <div className="w-full lg:w-3/5 bg-card/10 border border-border/40 rounded-xl p-5 md:p-6 flex flex-col justify-between min-h-[540px]">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-3 bg-fuchsia-500 rounded-full" />
+            <span className="text-[10px] font-mono tracking-widest text-fuchsia-400 font-bold uppercase">
+              Image Stream Interface
+            </span>
+          </div>
+          <h2 className="text-base font-semibold text-foreground tracking-tight mt-1">
+            Production Media Ingestion Array
+          </h2>
+        </div>
+
+        {/* Media Sandbox Drop Target Frame */}
+        <div className="relative border-2 border-dashed border-border/60 hover:border-fuchsia-500/40 bg-background/30 hover:bg-card/20 transition-all duration-300 rounded-xl flex flex-col items-center justify-center p-8 my-6 flex-1 group overflow-hidden min-h-[260px]">
+          {imageFileBase64 ? (
+            <div className="w-full h-full flex flex-col items-center justify-center p-2 relative">
+              <img 
+                src={`data:${fileMimeType};base64,${imageFileBase64}`} 
+                alt="Analytical processing canvas target" 
+                className="max-h-[220px] rounded-lg object-contain shadow-2xl border border-border/40"
+              />
+              <div className="absolute inset-0 bg-background/70 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-lg">
+                <label className="cursor-pointer bg-neutral-900 border border-border px-4 py-2 rounded-lg text-xs font-mono text-foreground font-semibold">
+                  FLUSH & LOAD NEW IMAGE
+                  <input type="file" accept="image/*" onChange={ingestSourceImage} className="hidden" />
+                </label>
+              </div>
+            </div>
+          ) : (
+            <label className="cursor-pointer flex flex-col items-center justify-center w-full h-full text-center">
+              <div className="h-11 w-11 rounded-xl bg-muted/60 border border-border/40 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <UploadCloud className="w-4 h-4 text-muted-foreground" />
+              </div>
+              <p className="text-xs font-medium text-foreground mt-3 tracking-tight">Ingest Target Image Vector Layer</p>
+              <p className="text-[10px] font-mono text-muted-foreground/60 mt-1 uppercase">PNG, JPEG, OR WEBP MEDIA BUFFER ONLY</p>
+              <input type="file" accept="image/*" onChange={ingestSourceImage} className="hidden" />
+            </label>
+          )}
+        </div>
+
+        {/* Action Dispatch Unit */}
+        <div className="space-y-4 shrink-0">
+          <Button
+            onClick={dispatchImageAnalysis}
+            disabled={isAnalyzing || !imageFileBase64}
+            className="w-full h-11 text-xs font-mono font-bold tracking-widest uppercase bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:from-fuchsia-500 hover:to-violet-500 text-white gap-2"
+          >
+            {isAnalyzing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <BarChart3 className="w-4 h-4" />}
+            PARSE COMPOSITION ANALYSIS
+          </Button>
+
+          <div className="flex items-center justify-between border-t border-border/30 pt-4 text-[11px] font-mono text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5 text-fuchsia-400" /> GRAPHIC ANALYSIS MODULE
+            </span>
+            <span>HARDWARE CONTEXT LOCK // ISOLATED</span>
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT COLUMN SPLIT: TELEMETRY AND DIAGNOSTIC FEED STREAMS (40% WIDTH) */}
+      <div className="w-full lg:w-2/5 flex flex-col gap-6">
+        <Card className="bg-card/20 border-border/40 shadow-xs flex-1 flex flex-col">
+          <CardContent className="p-5 flex flex-col h-full">
+            <div className="border-b border-border/30 pb-3 mb-4 shrink-0">
+              <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                <ImageIcon className="w-3.5 h-3.5 text-fuchsia-400" /> Pixel Vector Stream
+              </h3>
+            </div>
+
+            {telemetryReport ? (
+              <div className="flex-1 space-y-4 font-sans text-sm animate-fade-in">
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">COMPOSITION MASS INDEX</div>
+                  <div className="font-semibold text-foreground mt-0.5">{(telemetryReport.compositionScore * 100).toFixed(1)}% Structural Balance Velocity</div>
+                </div>
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">CONTRAST COMPLIANCE THRESHOLD</div>
+                  <div className={`font-semibold mt-0.5 ${telemetryReport.contrastPass ? "text-emerald-400" : "text-amber-400"}`}>
+                    {telemetryReport.contrastPass ? "OPTIMAL GAIN CHANNELS LOCATED (PASS)" : "LOW FIELD EDGE CONTRAST DEFICIT"}
+                  </div>
+                </div>
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">DETECTED CHROMATIC CLUSTERS</div>
+                  <div className="text-xs font-mono text-fuchsia-400 mt-1 flex flex-wrap gap-1">
+                    {telemetryReport.detectedVectors.map((v, i) => (
+                      <span key={i} className="bg-fuchsia-500/10 px-2 py-0.5 rounded border border-fuchsia-500/20">{v}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center font-mono text-xs text-muted-foreground/50 border border-dashed border-border/40 rounded-lg bg-background/10">
+                <ShieldAlert className="w-5 h-5 mb-2 text-muted-foreground/30" />
+                AWAITING SOURCE FILE INGESTION BUFFER TRACKS...
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </LabLayout>
+  );
+}
+3. Verification of System Isolation Routes: src/App.tsx
+This snippet verifies that the components are mounted cleanly inside the wouter navigation tree, completely preventing cross-contamination of view states or duplicate conditional mounting trees.
+
+TypeScript
+import { Switch, Route } from "wouter";
+import { Shell } from "@/components/layout/Shell";
+import Templates from "@/pages/Templates";
+import Create from "@/pages/Create";
+import Analyze from "@/pages/Analyze";
+import SceneDecoder from "@/pages/SceneDecoder";
+import NotFound from "@/pages/NotFound";
+
+export default function App() {
+  return (
+    <Shell>
+      <Switch>
+        {/* Unified Browsing Architecture Component */}
+        <Route path="/templates" component={Templates} />
+        
+        {/* SYSTEM 1 VIEWPORT: Text Generation, Channel Subtypes Matrix & Creative Copy Studio */}
+        <Route path="/create" component={Create} />
+        
+        {/* SYSTEM 2 VIEWPORTS: Image Payload Diagnostics, Analysis Lab & Multimodal Vision Tracking */}
+        <Route path="/analyze" component={Analyze} />
+        <Route path="/scene-decoder" component={SceneDecoder} />
+        
+        {/* Fallback Root Catch */}
+        <Route path="/">
+          <div className="p-8 font-mono text-xs text-muted-foreground">
+            CREATORCORE APPLICATION PLATFORM ENGINE INITIALIZED // SELECT ACCESS NODE FROM SIDEBAR BAR.
+          </div>
+        </Route>
+        
+        <Route component={NotFound} />
+      </Switch>
+    </Shell>
+  );
+}
+4. Direct Server Implementation Verification Contract: api-server Layout
+Verify your route index parameters inside the backend Express cluster map exactly to this file layout mapping scheme to ensure zero parameter bleed during core analysis generation updates.
+
+TypeScript
+// api-server schema route execution verification targets
+
+// Target Route 1: Text Synthesis Vector Handlers
+// Path Reference: POST /api/captions/generate-platform-subtype
+// Payload Expected Struct: { platform: string, subtype: string, prompt: string, tonalTrack: string }
+// Return Data Protocol: text/event-stream (SSE Server-Sent Lines Chunk Arrays)
+
+// Target Route 2: Graphical Matrix Instrumentation Handlers
+// Path Reference: POST /api/analyze/generate-thumbnail-metrics
+// Payload Expected Struct: { imageBase64: string, mimeType: string }
+// Return Data Protocol: application/json (Telemetry Data Structures Only)

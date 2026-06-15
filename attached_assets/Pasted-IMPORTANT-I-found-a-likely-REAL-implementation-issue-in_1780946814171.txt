@@ -1,0 +1,93 @@
+IMPORTANT: I found a likely REAL implementation issue inside the source code.
+
+File:
+src/pages/Create.tsx
+
+The current fetch request for generation does NOT explicitly include credentials/cookies.
+
+==================================================
+CURRENT CODE (OLD CODE)
+=======================
+
+```ts
+const response = await fetch("/api/captions/generate-stream", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(body),
+});
+```
+
+==================================================
+PROBLEM
+=======
+
+The app uses:
+
+* Clerk auth
+* Replit preview iframe
+* session cookies
+
+Without explicitly including credentials,
+the Clerk session cookie may not consistently reach the backend.
+
+This can cause:
+
+* 401 Unauthorized
+* Session expired
+* Generate Magic failure
+
+especially inside:
+
+* iframe preview
+* cross-site contexts
+* embedded Replit runtime
+
+==================================================
+REQUIRED FIX (NEW CODE)
+=======================
+
+Please replace the old fetch request with:
+
+```ts
+const response = await fetch("/api/captions/generate-stream", {
+  method: "POST",
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(body),
+});
+```
+
+==================================================
+IMPORTANT
+=========
+
+Please also inspect ALL authenticated fetch calls and ensure they consistently include:
+
+```ts
+credentials: "include"
+```
+
+Especially for:
+
+* analyze endpoints
+* Scene Decoder requests
+* history requests
+* saved requests
+* stats requests
+* authenticated generation endpoints
+
+==================================================
+GOAL
+====
+
+Ensure:
+
+* Clerk session cookies persist correctly
+* authenticated requests reach backend properly
+* Generate Magic works reliably
+* session state survives preview/auth flow
+
+This is now a REAL code-level implementation fix,
+not a conceptual diagnosis.

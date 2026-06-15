@@ -1,0 +1,404 @@
+IMPORTANT: I am now going to provide the FULL FRONTEND CODEBASE of CreatorCore.
+
+Your task is NOT:
+
+* fixing one bug only
+* changing colors only
+* doing small cosmetic edits only
+
+Your task IS:
+a FULL frontend UX architecture refinement and workspace separation overhaul.
+
+The app technically works.
+
+Routing technically works.
+
+Pages technically exist.
+
+BUT psychologically the app still feels like:
+“One dashboard pretending to be multiple pages.”
+
+When clicking:
+
+* Templates
+* Create
+* Analyze
+* Gallery
+* Saved
+* Stats
+* Settings
+
+the URL changes,
+BUT the experience still feels visually and behaviorally identical.
+
+Do NOT focus on:
+
+* APIs
+* database
+* Gemini
+* authentication logic
+* server restructuring
+
+This is primarily:
+a FRONTEND UX ARCHITECTURE problem.
+
+All pages currently share:
+
+* identical layout rhythm
+* identical visual density
+* identical spacing structure
+* identical card hierarchy
+* identical interaction flow
+* identical workspace feeling
+
+Because of this,
+users psychologically feel:
+“I never left the same page.”
+
+Transform CreatorCore from:
+“one repeated dashboard layout”
+
+into:
+“a cinematic creator operating system.”
+
+I do NOT want:
+
+* a full rewrite
+* a new framework
+* over-engineered abstractions
+* random cinematic effects
+* excessive animations
+* visual chaos
+* disconnected mini-apps
+
+I want:
+BALANCED professional frontend architecture.
+
+Preserve:
+
+* React architecture
+* Wouter routing
+* Clerk auth
+* current generation pipeline
+* sidebar navigation
+* existing routes
+* existing pages
+* current design language
+* cinematic identity
+
+DO NOT destroy the working foundation.
+
+Every page must feel:
+distinct and purposeful
+
+BUT:
+the app must STILL feel like ONE unified platform.
+
+Maintain:
+
+* shared typography
+* shared visual language
+* shared navigation logic
+* shared motion system
+* shared branding identity
+
+##################################################
+TEMPLATES PAGE
+##################################################
+
+Should feel like:
+
+* cinematic marketplace
+* discovery platform
+* inspiration browsing system
+
+Needs:
+
+* visual browsing rhythm
+* larger visual cards
+* hover previews
+* cinematic discovery layout
+* category exploration
+* trending sections
+* search prominence
+
+Psychology:
+“Explore and discover ideas.”
+
+##################################################
+CREATE PAGE
+##################################################
+
+Should feel like:
+
+* creator studio
+* AI workspace
+* cinematic editing environment
+
+Needs:
+
+* workspace-focused layout
+* generation panel dominance
+* tool hierarchy
+* focused composition
+* clean workspace rhythm
+
+Psychology:
+“Create and generate.”
+
+##################################################
+ANALYZE PAGE
+##################################################
+
+Should feel like:
+
+* AI diagnostics lab
+* cinematic analysis workstation
+* intelligent assistant system
+
+Needs:
+
+* split-panel layouts
+* diagnostics hierarchy
+* analysis cards
+* insight structure
+* AI feedback sections
+
+Psychology:
+“Understand and optimize.”
+
+##################################################
+GALLERY PAGE
+##################################################
+
+Should feel like:
+
+* creator showcase
+* portfolio feed
+* visual gallery
+
+Needs:
+
+* showcase grids
+* visual dominance
+* cinematic scrolling
+* creator display rhythm
+
+Psychology:
+“Display creations.”
+
+##################################################
+SAVED PAGE
+##################################################
+
+Should feel like:
+
+* personal creator vault
+* project archive
+* creator workspace memory
+
+Needs:
+
+* library structure
+* folders/cards
+* organized saved flow
+* recent/open workflow
+
+Psychology:
+“Manage my projects.”
+
+##################################################
+STATS PAGE
+##################################################
+
+Should feel like:
+
+* creator analytics cockpit
+* intelligent dashboard
+* creator insights center
+
+Needs:
+
+* metrics hierarchy
+* analytics cards
+* performance sections
+* usage visualization
+
+Psychology:
+“Track creator performance.”
+
+##################################################
+SETTINGS / PROFILE PAGE
+##################################################
+
+Should feel like:
+
+* creator identity center
+* premium creator account system
+
+Needs:
+
+* polished account UI
+* profile management
+* preferences layout
+* creator personalization
+
+Psychology:
+“This is MY platform.”
+
+DO NOT only:
+
+* change colors
+* change icons
+* change text
+
+ACTUALLY change:
+
+* layout rhythm
+* spacing systems
+* visual density
+* interaction hierarchy
+* content flow
+* component structure
+* workspace composition
+
+Improve:
+
+* route transitions
+* active sidebar states
+* navigation smoothness
+* page entrance rhythm
+* workspace transitions
+
+Avoid:
+
+* flickering
+* stale visual states
+* repeated layouts
+* route confusion
+
+Current issue:
+Refreshing/minimizing sometimes breaks immersion.
+
+Fix:
+
+* preserve page state
+* preserve uploaded image state
+* preserve prompts
+* preserve generation progress
+* restore workspace continuity
+
+Use:
+
+* localStorage
+* IndexedDB
+* persistent frontend state
+
+The thumbnail generation process should feel:
+
+* cinematic
+* premium
+* believable
+* immersive
+* professional
+
+BUT avoid:
+
+* fake hacker UI
+* cringe telemetry spam
+* distracting fake systems
+
+The loading experience should feel:
+subtle and premium.
+
+The app must remain:
+
+* smooth
+* lightweight
+* responsive
+* stable
+
+Avoid:
+
+* unnecessary re-renders
+* bloated animations
+* excessive effects
+* memory-heavy UI systems
+
+Focus FIRST on:
+
+1. Workspace identity separation
+2. Navigation experience
+3. Layout restructuring
+4. Session persistence
+5. Generation flow polish
+6. Templates page refinement
+7. Analyze page refinement
+
+NOT:
+
+* scaling systems
+* advanced social systems
+* massive backend changes
+* unnecessary architecture rewrites
+
+This project is intended as:
+
+* internship showcase
+* advanced frontend/full-stack portfolio
+* AI creator software demonstration
+
+The goal is NOT:
+building a million-user startup immediately.
+
+The goal IS:
+making CreatorCore feel:
+
+* believable
+* polished
+* immersive
+* professional
+* intentional
+* advanced
+
+CreatorCore should feel like:
+
+* cinematic creator software
+* AI-powered creator workspace
+* modern creator operating system
+* premium creator platform
+
+NOT:
+
+* a repeated dashboard layout
+* a generic AI website
+* a student CRUD project
+* a prototype pretending to be an app
+
+==================================================
+NOW:
+I will paste the FULL FRONTEND CODEBASE below.
+
+Analyze the frontend architecture deeply.
+
+Then:
+
+* identify the exact frontend UX problems
+* identify layout repetition issues
+* identify shared rhythm problems
+* identify component hierarchy problems
+* identify routing psychology problems
+
+Then generate:
+
+* the BEST frontend refinement strategy
+* actual implementation improvements
+* clean maintainable solutions
+* balanced UX architecture upgrades
+
+WITHOUT:
+
+* over-engineering
+* rewriting everything
+* breaking the current architecture
+* as i wanna analyze the problem and give it to chat gpt\

@@ -1,0 +1,230 @@
+IMPORTANT: FIX ASPECT RATIO GENERATION LOGIC + SESSION PERSISTENCE SYSTEM.
+
+==================================================
+ASPECT RATIO GENERATION ISSUE
+=============================
+
+Current issue:
+When users upload a 9:16 image and request a 16:9 YouTube thumbnail, the AI still generates output in 9:16 ratio because the system is preserving the original uploaded image canvas size.
+
+This must be fixed at the BACKEND GENERATION PIPELINE level, NOT only through prompt instructions.
+
+==================================================
+REQUIRED SOLUTION
+=================
+
+Create a proper Aspect Ratio Engine.
+
+The system must:
+
+* detect the selected target platform
+* automatically create the correct output canvas dimensions
+* intelligently recompose the uploaded image into the new ratio
+* preserve the main subject visibility
+* preserve face visibility
+* preserve weapon visibility
+* preserve storytelling clarity
+* preserve the original visual identity of the uploaded image
+
+DO NOT simply:
+
+* stretch the image
+* crop the image badly
+* preserve original uploaded dimensions blindly
+* redesign the uploaded image completely
+
+==================================================
+IMPORTANT EMOTION FIX
+=====================
+
+Current issue:
+The AI is over-exaggerating facial emotion and making characters look unrealistic or over-acted.
+
+The goal is NOT:
+
+* anime rage screaming
+* exaggerated madness
+* unrealistic expressions
+* overpowered glowing eyes
+* extreme emotional distortion
+
+The goal IS:
+
+* realistic combat focus
+* subtle survival pressure
+* calm but dangerous confidence
+* cinematic intensity
+* controlled dominance
+* believable battle emotion
+
+The character should feel like:
+
+* an experienced survivor
+* a focused fighter
+* a dangerous player
+
+NOT:
+
+* a cartoon villain
+* exaggerated anime scream
+* unrealistic rage face
+
+==================================================
+PLATFORM DIMENSIONS
+===================
+
+YouTube:
+1920x1080 (16:9)
+
+YouTube Shorts:
+1080x1920 (9:16)
+
+TikTok:
+1080x1920 (9:16)
+
+Instagram Post:
+1080x1080 (1:1)
+
+Instagram Story:
+1080x1920 (9:16)
+
+Facebook:
+1080x1080 (1:1)
+
+X/Twitter:
+1600x900 (16:9)
+
+==================================================
+CORRECT PIPELINE
+================
+
+Current broken flow:
+
+uploaded image
+→ image-to-image generation
+→ preserve uploaded ratio
+→ wrong output ratio
+
+Replace with:
+
+uploaded image
+→ detect target platform
+→ create new target canvas
+→ intelligently reposition main subject
+→ expand environment naturally
+→ maintain cinematic composition balance
+→ preserve original image identity
+→ send recomposed image to Gemini generation
+→ generate final platform-optimized thumbnail
+
+==================================================
+SMART RECOMPOSITION RULES
+=========================
+
+If uploaded image is portrait and target is widescreen:
+
+* expand jungle/environment sideways
+* maintain character dominance
+* preserve face visibility
+* preserve weapon visibility
+* keep cinematic framing
+* preserve original composition feel
+
+If uploaded image is widescreen and target is vertical:
+
+* prioritize character height
+* stack visual storytelling vertically
+* maintain mobile readability
+
+==================================================
+IMPORTANT COMPOSITION RULES
+===========================
+
+The AI must intelligently adapt composition for each platform.
+
+DO NOT preserve original image dimensions blindly.
+
+The generated output MUST match the selected platform aspect ratio exactly.
+
+The output should feel professionally reframed for the selected platform.
+
+==================================================
+SESSION PERSISTENCE / MINIMIZE ISSUE
+====================================
+
+Current issue:
+When the app is minimized, refreshed, backgrounded, or the screen changes, the entire generation progress resets and the user loses their work.
+
+This creates a bad app experience.
+
+==================================================
+REQUIRED FIX
+============
+
+Implement persistent session state management.
+
+The app must:
+
+* preserve generation progress
+* preserve uploaded images
+* preserve prompts
+* preserve selected platform/style/mood
+* preserve current generation status
+* restore unfinished generation automatically
+
+The app should survive:
+
+* minimize
+* tab switch
+* mobile backgrounding
+* accidental refresh
+* temporary internet interruption
+
+==================================================
+RECOMMENDED IMPLEMENTATION
+==========================
+
+Use:
+
+* localStorage or IndexedDB for temporary persistence
+* backend generation job tracking
+* auto-save system
+* session recovery system
+* persistent loading state
+
+==================================================
+USER EXPERIENCE GOAL
+====================
+
+If a user minimizes the app and comes back:
+
+* the project should still exist
+* generation progress should continue
+* uploaded image should remain loaded
+* prompts/settings should remain intact
+
+The app should feel:
+
+* stable
+* professional
+* app-like
+
+NOT:
+
+* fragile
+* temporary
+* reset-prone
+
+==================================================
+IMPORTANT
+=========
+
+Generation progress should continue independently from UI visibility.
+
+Do NOT restart generation when:
+
+* screen minimizes
+* browser tab changes
+* app goes to background
+
+The app should restore the previous generation state automatically when reopened.

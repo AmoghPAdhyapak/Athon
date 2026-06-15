@@ -1,0 +1,735 @@
+IMPORTANT CONTEXT BEFORE IMPLEMENTATION
+
+I am also going to paste an additional architecture/code reference AFTER this message.
+
+IMPORTANT:
+The pasted reference at the end contains:
+
+* workspace layout ideas
+* shell refactor direction
+* frontend restructuring concepts
+* layout psychology fixes
+* implementation examples
+
+Treat BOTH:
+
+1. this instruction message
+2. the pasted architecture/code reference below
+
+as COMBINED implementation context.
+
+==================================================
+
+CURRENT REAL PROBLEM
+
+==================================================
+
+The app already works technically.
+
+Routing works.
+Backend works.
+Auth works.
+APIs work.
+
+The REAL issue is:
+frontend workspace psychology and layout rigidity.
+
+Currently all pages are trapped inside the same global layout rhythm due to the universal Shell.tsx container structure.
+
+Because of this:
+
+* Templates
+* Create
+* Analyze
+* Gallery
+* Saved
+
+all psychologically feel like:
+“the same dashboard with different content.”
+
+==================================================
+
+ROOT CAUSE
+
+==================================================
+
+The current Shell.tsx globally forces:
+
+* same width
+* same centered alignment
+* same padding
+* same scrolling behavior
+* same visual density
+
+onto every route.
+
+This creates:
+layout rhythm collapse.
+
+==================================================
+
+THE REQUIRED SOLUTION
+
+==================================================
+
+Implement a PROFESSIONAL WORKSPACE LAYOUT SYSTEM.
+
+NOT:
+a redesign from scratch.
+
+NOT:
+fake cinematic complexity.
+
+NOT:
+cyberpunk gimmick UI.
+
+==================================================
+
+IMPORTANT REQUIREMENTS
+
+==================================================
+
+Preserve:
+
+* React architecture
+* Wouter routing
+* Clerk auth
+* current backend
+* current APIs
+* sidebar system
+* bottom nav
+* atmospheric background system
+* current visual identity
+
+Do NOT:
+
+* rebuild the app
+* over-engineer abstractions
+* create unnecessary complexity
+* introduce bloated state systems
+
+==================================================
+
+IMPLEMENTATION GOAL
+
+==================================================
+
+Transform CreatorCore from:
+“one repeated dashboard layout”
+
+into:
+“multiple creator workspaces inside one unified creator operating system.”
+
+==================================================
+
+WORKSPACE SYSTEM REQUIRED
+
+==================================================
+
+Create reusable layouts:
+
+1. MarketplaceLayout
+   Used for:
+
+* Templates
+* Gallery
+
+Psychology:
+
+* browsing
+* discovery
+* cinematic marketplace
+* visual exploration
+
+==================================================
+
+2. StudioLayout
+   Used for:
+
+* Create
+
+Psychology:
+
+* focused creator workspace
+* editing studio
+* production environment
+
+==================================================
+
+3. LabLayout
+   Used for:
+
+* Analyze
+* Stats
+
+Psychology:
+
+* diagnostics lab
+* AI analysis workstation
+* creator intelligence environment
+
+IMPORTANT:
+Keep this PROFESSIONAL.
+
+Avoid:
+
+* fake terminal aesthetics
+* excessive telemetry spam
+* cringe hacker visuals
+* fake sci-fi overload
+
+==================================================
+
+IMPORTANT DESIGN REQUIREMENTS
+
+==================================================
+
+The final UX should feel:
+
+* premium
+* cinematic
+* immersive
+* creator-focused
+* modern
+* professional
+
+BUT ALSO:
+
+* clean
+* maintainable
+* scalable
+* lightweight
+
+==================================================
+
+IMPORTANT PERFORMANCE REQUIREMENTS
+
+==================================================
+
+Avoid:
+
+* unnecessary re-renders
+* deeply nested wrappers
+* bloated animation systems
+* excessive motion effects
+* heavy abstraction layers
+
+Maintain:
+
+* responsiveness
+* smoothness
+* maintainability
+* performance
+
+==================================================
+
+IMPLEMENT THE FOLLOWING
+
+==================================================
+
+1. Refactor Shell.tsx into a fluid layout coordinator
+
+2. Create WorkspaceLayouts.tsx with:
+
+* MarketplaceLayout
+* StudioLayout
+* LabLayout
+
+3. Refactor Templates.tsx into:
+
+* cinematic discovery marketplace
+* wider browsing layout
+* visual template exploration
+
+4. Refactor Create.tsx into:
+
+* creator workspace
+* split editing environment
+* left controls + right preview
+
+5. Refactor Analyze.tsx into:
+
+* diagnostics workspace
+* split analysis panels
+* professional AI analysis flow
+
+==================================================
+
+IMPORTANT
+
+==================================================
+
+After this message, I will paste the additional architecture/code reference.
+
+Use BOTH references together.
+
+Combine:
+
+* the implementation quality from the pasted code
+* with the architectural requirements from this message
+
+to generate the BEST balanced implementation possible.
+
+Generate:
+
+* production-ready React + TypeScript code
+* clean Tailwind implementation
+* maintainable structure
+* responsive layouts
+* code ready for direct Replit integration
+
+Minimal explanations.
+Code-focused response.
+
+==================================================
+
+# NOW I WILL PASTE THE ADDITIONAL ARCHITECTURE/CODE REFERENCE BELOW
+1. Complete Replacement for src/components/layout/Shell.tsx
+TypeScript
+import { ReactNode } from "react";
+import { Sidebar } from "./Sidebar";
+import { BottomNav } from "./BottomNav";
+
+interface ShellProps {
+  children: ReactNode;
+}
+
+export function Shell({ children }: ShellProps) {
+  return (
+    <div className="min-h-screen bg-background text-foreground dark selection:bg-primary/30 selection:text-white antialiased overflow-x-hidden">
+      {/* Ambient Atmospheric Background System */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div 
+          className="absolute top-[-15%] left-[-8%] w-[55%] h-[55%] rounded-full blur-[140px]" 
+          style={{ background: "radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%)" }} 
+        />
+        <div 
+          className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[55%] rounded-full blur-[140px]" 
+          style={{ background: "radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)" }} 
+        />
+      </div>
+
+      {/* Persistent Navigation Units */}
+      <Sidebar />
+
+      {/* Fluid Layout Coordinator: Global constraints removed to allow page-driven layout systems */}
+      <main className="md:pl-64 flex flex-col min-h-screen pb-20 md:pb-0 relative z-10 w-full">
+        {children}
+      </main>
+
+      <BottomNav />
+    </div>
+  );
+}
+2. Complete File for src/components/layout/WorkspaceLayouts.tsx
+TypeScript
+import React, { ReactNode } from "react";
+import { PageHero } from "./PageHero";
+
+interface BaseLayoutProps {
+  children: ReactNode;
+  title: string;
+  description?: string;
+}
+
+/**
+ * 1. MarketplaceLayout
+ * Purpose: High visual exploration, infinite browsing density, discovery-oriented scrolling environment.
+ * Target Psychology: Asset discovery, browsing a premium library (e.g., Netflix/Pinterest).
+ */
+export function MarketplaceLayout({ children, title, description }: BaseLayoutProps) {
+  return (
+    <div className="w-full min-h-screen bg-background flex flex-col">
+      <PageHero title={title} description={description} />
+      <div className="w-full max-w-[1800px] mx-auto px-4 sm:px-6 md:px-8 xl:px-12 py-8 flex-1">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * 2. StudioLayout
+ * Purpose: Fixed-height viewport workbench. Pinned utility panels, application-style viewport containment.
+ * Target Psychology: Focused editing execution, workspace immersion (e.g., Premiere Pro, Figma).
+ */
+export function StudioLayout({ children, title, description }: BaseLayoutProps) {
+  return (
+    <div className="w-full h-screen flex flex-col bg-background/95 overflow-hidden">
+      <div className="shrink-0 border-b border-border/40 bg-card/20 backdrop-blur-sm px-6 py-4">
+        <h1 className="text-lg font-semibold tracking-tight text-foreground">{title}</h1>
+        {description && <p className="text-xs text-muted-foreground mt-0.5">{description}</p>}
+      </div>
+      <div className="flex-1 w-full grid grid-cols-1 xl:grid-cols-12 overflow-hidden items-stretch">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * 3. LabLayout
+ * Purpose: Asymmetric evaluation workbench, data dense panels, comparative media presentation.
+ * Target Psychology: Diagnostic validation, diagnostic engine reporting framework.
+ */
+export function LabLayout({ children, title, description }: BaseLayoutProps) {
+  return (
+    <div className="w-full min-h-screen bg-background/98 flex flex-col">
+      <div className="shrink-0 border-b border-border/40 px-6 md:px-8 xl:px-12 py-5 flex items-center justify-between bg-card/10">
+        <div>
+          <h1 className="text-lg font-bold tracking-tight uppercase font-mono text-foreground">{title}</h1>
+          {description && <p className="text-xs text-muted-foreground mt-0.5">{description}</p>}
+        </div>
+        <div className="hidden sm:block text-[10px] font-mono tracking-wider bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded">
+          DIAGNOSTIC MOTOR READY
+        </div>
+      </div>
+      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 xl:px-12 py-8 flex-1 flex flex-col lg:flex-row gap-8 items-stretch">
+        {children}
+      </div>
+    </div>
+  );
+}
+3. Complete Refactor for src/pages/Templates.tsx
+TypeScript
+import { useState } from "react";
+import { MarketplaceLayout } from "@/components/layout/WorkspaceLayouts";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Search, SlidersHorizontal, Play, Sparkles } from "lucide-react";
+
+interface TemplateItem {
+  id: string;
+  title: string;
+  category: string;
+  metric: string;
+  previewUrl?: string;
+}
+
+const SAMPLE_TEMPLATES: TemplateItem[] = [
+  { id: "1", title: "Apex Legends Ranked Overlay", category: "Gaming", metric: "9.2% Avg CTR" },
+  { id: "2", title: "Neon Cyberpunk Speedramp", category: "Anime", metric: "+14% Retention" },
+  { id: "3", title: "Valorant Cinematic Montage Intro", category: "Gaming", metric: "8.7% Avg CTR" },
+  { id: "4", title: "Lo-Fi Retro Chill Beats Wrapper", category: "Social Media", metric: "11.1% Avg CTR" },
+  { id: "5", title: "Esports Tournament Schedule Sheet", category: "Esports", metric: "7.9% Avg CTR" },
+  { id: "6", title: "Shonen Vibe Action Cut Frame", category: "Anime", metric: "+19% Engagement" },
+];
+
+const CATEGORIES = ["All Assets", "Gaming", "Anime", "Esports", "Social Media"];
+
+export default function Templates() {
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All Assets");
+
+  const filteredTemplates = SAMPLE_TEMPLATES.filter((tpl) => {
+    const matchesSearch = tpl.title.toLowerCase().includes(search.toLowerCase());
+    const matchesCat = activeCategory === "All Assets" || tpl.category === activeCategory;
+    return matchesSearch && matchesCat;
+  });
+
+  return (
+    <MarketplaceLayout
+      title="Cinematic Templates Hub"
+      description="Deploy high-retention structural assets tuned to algorithmic performance metrics."
+    >
+      {/* Search and Navigation Toolbar Section */}
+      <div className="w-full flex flex-col sm:flex-row gap-4 items-center justify-between mb-8 bg-card/30 border border-border/40 p-4 rounded-xl backdrop-blur-xs shrink-0">
+        <div className="relative w-full sm:max-w-md">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Query templates by creator niche or platform style..."
+            className="pl-10 bg-background/50 border-border/60 focus-visible:ring-primary"
+          />
+        </div>
+        <div className="flex items-center gap-2 w-full sm:w-auto shrink-0 justify-end">
+          <Button variant="outline" size="sm" className="font-mono text-xs border-border/60 gap-2">
+            <SlidersHorizontal className="w-3.5 h-3.5" /> FILTERS
+          </Button>
+        </div>
+      </div>
+
+      {/* Horizontal Scroll Filter Categories */}
+      <div className="flex gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none shrink-0">
+        {CATEGORIES.map((cat) => (
+          <Button
+            key={cat}
+            variant={activeCategory === cat ? "default" : "secondary"}
+            size="sm"
+            onClick={() => setActiveCategory(cat)}
+            className="rounded-full text-xs font-medium px-4 tracking-wide"
+          >
+            {cat}
+          </Button>
+        ))}
+      </div>
+
+      {/* Fluid Visual Browsing Grid System */}
+      {filteredTemplates.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredTemplates.map((template) => (
+            <Card 
+              key={template.id} 
+              className="group relative overflow-hidden bg-card/40 border-border/50 hover:border-primary/40 transition-all duration-300 flex flex-col h-[340px]"
+            >
+              {/* Media Preview Box */}
+              <div className="w-full h-48 bg-muted relative overflow-hidden shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10" />
+                <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
+                  <Sparkles className="w-8 h-8 text-muted-foreground/30 group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                {/* Visual Actions Container Overlay */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-background/40 backdrop-blur-xs transition-opacity duration-300 z-20 flex items-center justify-center">
+                  <Button size="sm" className="gap-2 shadow-lg tracking-wide font-medium">
+                    <Play className="w-3.5 h-3.5 fill-current" /> PREVIEW ASSET
+                  </Button>
+                </div>
+              </div>
+
+              {/* Card Meta Content Block */}
+              <CardContent className="p-4 flex-1 flex flex-col justify-between relative z-10">
+                <div className="space-y-1.5">
+                  <span className="text-[10px] font-mono font-bold uppercase text-primary/90 tracking-wider">
+                    {template.category}
+                  </span>
+                  <h3 className="text-sm font-semibold text-foreground tracking-tight line-clamp-2 group-hover:text-primary transition-colors">
+                    {template.title}
+                  </h3>
+                </div>
+                <div className="flex items-center justify-between border-t border-border/40 pt-3 text-[11px] font-mono text-muted-foreground">
+                  <span>METRIC SCORE</span>
+                  <span className="text-emerald-400 font-bold">{template.metric}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="w-full py-24 text-center border border-dashed border-border/60 rounded-xl bg-card/10">
+          <p className="text-sm text-muted-foreground font-mono">No cinematic templates matching query parameters located.</p>
+        </div>
+      )}
+    </MarketplaceLayout>
+  );
+}
+4. Complete Refactor for src/pages/Create.tsx
+TypeScript
+import { useState } from "react";
+import { StudioLayout } from "@/components/layout/WorkspaceLayouts";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Sparkles, Send, RefreshCw, FileText, LayoutTemplate } from "lucide-react";
+
+export default function Create() {
+  const [prompt, setPrompt] = useState("");
+  const [activeTab, setActiveTab] = useState("captions");
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleExecution = () => {
+    if (!prompt.trim()) return;
+    setIsProcessing(true);
+    setTimeout(() => setIsProcessing(false), 2000);
+  };
+
+  return (
+    <StudioLayout 
+      title="Asset Synthesis Workspace" 
+      description="Configure metadata layers, streaming content hooks, and narrative engines."
+    >
+      {/* LEFT COMPONENT COLUMN: Input Controls Panel Container */}
+      <div className="xl:col-span-4 border-r border-border/40 bg-card/10 flex flex-col h-full overflow-hidden shrink-0">
+        {/* Modular Workflow Switcher */}
+        <div className="p-4 border-b border-border/30 bg-background/20 shrink-0">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 bg-muted/60">
+              <TabsTrigger value="captions" className="text-xs font-medium gap-1.5">
+                <FileText className="w-3.5 h-3.5" /> Text Matrix
+              </TabsTrigger>
+              <TabsTrigger value="parameters" className="text-xs font-medium gap-1.5">
+                <LayoutTemplate className="w-3.5 h-3.5" /> Constants
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+
+        {/* Scrollable Control Surface Panel */}
+        <div className="flex-1 overflow-y-auto p-5 space-y-6">
+          <div className="space-y-2">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Prompt Directives
+            </label>
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="w-full h-36 bg-background/50 border border-border/60 focus:border-primary rounded-xl p-3 text-sm text-foreground focus:outline-hidden transition-colors resize-none placeholder:text-muted-foreground/50 text-sans leading-relaxed"
+              placeholder="Detail target audience profile, content context, and video topics..."
+            />
+          </div>
+
+          <div className="space-y-3">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Structural Variant Track
+            </label>
+            <select className="w-full bg-background/50 border border-border/60 rounded-xl p-2.5 text-sm text-foreground focus:outline-hidden focus:border-primary transition-colors font-sans">
+              <option value="shorts">YouTube Shorts Retention Hook</option>
+              <option value="gaming">Twitch Shorthand Stream Metadata</option>
+              <option value="anime">Anime Edit Conceptual Script</option>
+            </select>
+          </div>
+
+          <div className="space-y-3">
+            <label className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-bold">
+              Creative Framing Tonal Track
+            </label>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="outline" size="sm" className="text-xs border-primary/20 bg-primary/5 text-primary hover:bg-primary/10">
+                High Energy
+              </Button>
+              <Button variant="outline" size="sm" className="text-xs border-border/60 text-muted-foreground">
+                Cinematic Lab
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Controls Footer Dock */}
+        <div className="p-4 border-t border-border/40 bg-background/40 shrink-0">
+          <Button 
+            onClick={handleExecution} 
+            disabled={isProcessing || !prompt.trim()} 
+            className="w-full gap-2 text-xs font-mono font-bold tracking-wider uppercase h-11"
+          >
+            {isProcessing ? (
+              <RefreshCw className="w-4 h-4 animate-spin" />
+            ) : (
+              <Sparkles className="w-4 h-4 fill-current" />
+            )}
+            COMPILE STRUCTURAL STREAM
+          </Button>
+        </div>
+      </div>
+
+      {/* RIGHT COMPONENT COLUMN: Viewport Preview Monitor Canvas */}
+      <div className="xl:col-span-8 bg-black/5 dark:bg-neutral-950/20 p-6 md:p-8 h-full overflow-y-auto flex flex-col justify-center items-center">
+        <div className="w-full max-w-3xl aspect-video border border-border/60 bg-card/20 rounded-xl backdrop-blur-xs flex flex-col items-center justify-center p-8 text-center transition-all">
+          <div className="h-12 w-12 rounded-full bg-muted/50 flex items-center justify-center mb-4 border border-border/40">
+            <Send className="w-5 h-5 text-muted-foreground/60" />
+          </div>
+          <h3 className="text-sm font-semibold text-foreground tracking-tight">Active Output Canvas Monitor</h3>
+          <p className="text-xs text-muted-foreground max-w-sm mt-1 leading-normal">
+            Synthesis execution products populate live within this canvas viewport layout track upon prompt deployment.
+          </p>
+        </div>
+      </div>
+    </StudioLayout>
+  );
+}
+5. Complete Refactor for src/pages/Analyze.tsx
+TypeScript
+import { useState } from "react";
+import { LabLayout } from "@/components/layout/WorkspaceLayouts";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { UploadCloud, BarChart3, Activity, Image as ImageIcon, ShieldAlert } from "lucide-react";
+
+export default function Analyze() {
+  const [isUploaded, setIsUploaded] = useState(false);
+
+  return (
+    <LabLayout 
+      title="Cinematic Image Lab" 
+      description="Execute compositional weight scoring, asset metadata extraction, and thumbnail analytics telemetry tracks."
+    >
+      {/* LEFT MODULE PANE: Primary Media Input Upload Frame Zone (60% Width Split) */}
+      <div className="w-full lg:w-3/5 bg-card/10 border border-border/40 rounded-xl p-5 md:p-6 flex flex-col justify-between min-h-[520px]">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-3 bg-primary rounded-full" />
+            <span className="text-[10px] font-mono tracking-widest text-primary font-bold uppercase">
+              Data Entry Layer
+            </span>
+          </div>
+          <h2 className="text-base font-semibold text-foreground tracking-tight mt-1">
+            Source Media Processing Deck
+          </h2>
+        </div>
+
+        {/* Drag Drop Functional Target Zone Box */}
+        <div 
+          onClick={() => setIsUploaded(!isUploaded)}
+          className="border-2 border-dashed border-border/60 hover:border-primary/40 bg-background/30 hover:bg-card/20 transition-all duration-300 rounded-xl flex flex-col items-center justify-center p-12 my-6 cursor-pointer flex-1 group"
+        >
+          <div className="h-12 w-12 rounded-xl bg-muted/60 flex items-center justify-center border border-border/40 group-hover:scale-105 transition-transform duration-300">
+            <UploadCloud className="w-5 h-5 text-muted-foreground" />
+          </div>
+          <p className="text-sm font-medium text-foreground mt-4 tracking-tight">
+            {isUploaded ? "Asset Staged Container Lock Complete" : "Drop video frame or thumbnail layout here"}
+          </p>
+          <p className="text-xs text-muted-foreground/60 font-mono mt-1">
+            {isUploaded ? "CLICK BOUNDS TO CLEAR RAW ASSET FILE" : "PNG, JPEG OR WEBP COMPATIBLE UP TO 12MB"}
+          </p>
+        </div>
+
+        <div className="flex items-center justify-between border-t border-border/30 pt-4 text-[11px] font-mono text-muted-foreground shrink-0">
+          <span className="flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-muted-foreground/70" /> PARSER STATUS // INITIALIZED</span>
+          <span>COMPRESSION // PASSIVE</span>
+        </div>
+      </div>
+
+      {/* RIGHT MODULE PANE: Metrics Telemetry Reporting Stream Display (40% Width Split) */}
+      <div className="w-full lg:w-2/5 flex flex-col gap-6">
+        {/* Core System Diagnostic Metrics Box */}
+        <Card className="bg-card/20 border-border/40 shadow-xs flex-1 flex flex-col">
+          <CardContent className="p-5 flex flex-col h-full">
+            <div className="border-b border-border/30 pb-3 mb-4 flex items-center justify-between shrink-0">
+              <h3 className="text-xs font-mono uppercase tracking-wider font-bold text-foreground flex items-center gap-2">
+                <BarChart3 className="w-3.5 h-3.5 text-primary" /> Evaluation Analysis Stream
+              </h3>
+            </div>
+
+            {isUploaded ? (
+              <div className="flex-1 space-y-4 font-sans text-sm">
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">COMPOSITION WEIGHT PROFILE</div>
+                  <div className="font-semibold text-foreground mt-0.5">High Focus Horizon Distribution (Rule of Thirds Alignment)</div>
+                </div>
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">ALGORITHMIC TEXT LEGIBILITY</div>
+                  <div className="font-semibold text-emerald-400 mt-0.5">Optimal Bounds Contrast Metric (Pass 94%)</div>
+                </div>
+                <div className="bg-background/40 p-3 rounded-lg border border-border/30">
+                  <div className="text-[11px] font-mono text-muted-foreground">CHROMATIC GRADE EVALUATION</div>
+                  <div className="font-semibold text-primary mt-0.5">Teal and Amber Accent Clustered High Frequency Vector Blocks</div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center font-mono text-xs text-muted-foreground/60 border border-dashed border-border/40 rounded-lg bg-background/10">
+                <ShieldAlert className="w-5 h-5 mb-2 text-muted-foreground/30" />
+                AWAITING SOURCE DATA DEPLOYMENT STREAM...
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Supplementary Asset Diagnostic Stream Box */}
+        <Card className="bg-card/20 border-border/40 shadow-xs shrink-0 h-44 flex flex-col">
+          <CardContent className="p-5 flex flex-col justify-between h-full">
+            <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-muted-foreground flex items-center gap-2">
+              <ImageIcon className="w-3.5 h-3.5" /> Recomposition Pipeline Matrix
+            </h4>
+            <div className="text-xs text-sans text-muted-foreground leading-normal mb-1">
+              {isUploaded ? "Aspect target profile maps accurately inside rendering viewport grids." : "Staging media assets updates this pipeline stream frame with real aspect scaling transformations."}
+            </div>
+            <div className="w-full bg-muted/60 h-1.5 rounded-full overflow-hidden">
+              <div className={`h-full bg-primary transition-all duration-500 ${isUploaded ? "w-full" : "w-0"}`} />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </LabLayout>
+  );
+}
