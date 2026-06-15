@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0814" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AETHON" />
+    <title>AETHON — The Cinematic AI Creator OS</title>
+    <meta name="description" content="AETHON is the cinematic AI creator workspace for gamers, anime editors, and short-form creators. Generate thumbnails, hooks, captions and titles that click." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="AETHON — The Cinematic AI Creator OS" />
+    <meta property="og:description" content="The cinematic AI creator workspace for gaming creators, anime editors, and short-form creators." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AETHON — The Cinematic AI Creator OS" />
+    <meta name="twitter:description" content="The cinematic AI creator workspace for gaming creators, anime editors, and short-form creators." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/aethon-logo.png" fetchpriority="high" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('aethon_theme');
+          if (t !== 'light' && t !== 'dark') t = 'dark';
+          if (t === 'dark') document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = t;
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+        }
+        // If the cinematic intro has already played on this device/tab, mark it
+        // done BEFORE first paint so the boot splash never flashes for returning users.
+        try {
+          if (
+            localStorage.getItem('creatorcore_splash_shown_v2') === '1' ||
+            sessionStorage.getItem('creatorcore_splash_shown_v2') === '1'
+          ) {
+            document.documentElement.classList.add('splash-done');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      /* Theme-aware base background, applied on the very first paint (the inline
+         script above sets `.dark` before paint). Guarantees that any gap before
+         React renders — e.g. the returning-user path where the boot splash is
+         already hidden — never shows a white flash. */
+      html { background-color: hsl(244 15% 4%); }
+      html:not(.dark) { background-color: hsl(250 40% 98%); }
+      /* Static boot splash — painted instantly from HTML, before React/JS runs,
+         so the user never sees a blank black screen or white flash. The React
+         <Splash> overlay is visually identical and takes over seamlessly. */
+      #boot-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(ellipse at center, hsl(244, 18%, 6%) 0%, hsl(244, 22%, 2%) 70%, #000 100%);
+      }
+      html.splash-done #boot-splash {
+        display: none;
+      }
+      #boot-splash img {
+        width: min(72vw, 520px);
+        height: auto;
+        user-select: none;
+        -webkit-user-drag: none;
+        animation: bootLogoIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both,
+          bootGlow 3s ease-in-out infinite 0.45s;
+      }
+      @keyframes bootLogoIn {
+        from { opacity: 0; transform: scale(0.96); filter: blur(3px); }
+        to { opacity: 1; transform: scale(1); filter: blur(0); }
+      }
+      @keyframes bootGlow {
+        0%, 100% { filter: drop-shadow(0 0 42px rgba(99, 102, 241, 0.4)); }
+        50% { filter: drop-shadow(0 0 72px rgba(236, 72, 153, 0.5)); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #boot-splash img { animation: none; opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-splash"><img src="/aethon-logo.png" alt="AETHON" /></div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
